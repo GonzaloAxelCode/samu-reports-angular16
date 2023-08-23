@@ -1,0 +1,2 @@
+export * from './chartbar.component';
+

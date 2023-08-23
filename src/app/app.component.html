@@ -1,0 +1,12 @@
+<tui-root>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <app-sidebar></app-sidebar>
+    <div class="flex flex-col flex-1 w-full">
+      <app-header></app-header>
+      <app-notification></app-notification>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+</tui-root>
