@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
+  TuiSvgModule,
   TuiTextfieldControllerModule,
   tuiNotificationOptionsProvider,
 } from '@taiga-ui/core';
@@ -13,16 +14,15 @@ import {
   TuiInputModule,
   TuiInputPasswordModule,
 } from '@taiga-ui/kit';
-import { LoginComponent } from 'src/app/components/login/login.component';
-import { RegisterComponent } from 'src/app/components/register/register.component';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio.component';
 
 @NgModule({
-  declarations: [InicioComponent, LoginComponent, RegisterComponent],
+  declarations: [InicioComponent],
   imports: [
     CommonModule,
     InicioRoutingModule,
+
     FormsModule,
     TuiInputModule,
     ReactiveFormsModule,
@@ -31,6 +31,7 @@ import { InicioComponent } from './inicio.component';
     TuiLinkModule,
     TuiButtonModule,
     TuiTextfieldControllerModule,
+    TuiSvgModule,
   ],
   providers: [
     tuiNotificationOptionsProvider({

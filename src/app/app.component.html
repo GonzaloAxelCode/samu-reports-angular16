@@ -1,12 +1,46 @@
 <tui-root>
-  <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
-    <app-sidebar></app-sidebar>
-    <div class="flex flex-col flex-1 w-full">
-      <app-header></app-header>
-      <app-notification></app-notification>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
+  <div *ngIf="(isLoadingCheckAuthenticate$ | async) == false">
+    <div
+      *ngIf="(isAuthenticated$ | async) == true"
+      class="flex h-screen dark:bg-gray-900"
+    >
+      <div class="flex flex-col flex-1 w-full">
+        <app-notification></app-notification>
+        <main class="bg-gray-50">
+          <app-sidebar></app-sidebar>
+          <div
+            class="h-full sticky top-5 contenido contenido flex-1 lg:ml-[217px] ml-0"
+          >
+            <app-header></app-header>
+            <router-outlet></router-outlet>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div *ngIf="(isAuthenticated$ | async) == false">
+      <app-login></app-login>
+      <app-register></app-register>
+    </div>
+  </div>
+  <div
+    *ngIf="(isLoadingCheckAuthenticate$ | async) == true"
+    class="flex items-center justify-center h-screen"
+  >
+    <div class="flex justify-center flex-col">
+      <img
+        src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
+        loading="lazy"
+        class="w-[160px] mb-3"
+        alt="tailus logo"
+      />
+      <tui-loader
+        class="loader"
+        [showLoader]="true"
+        [inheritColor]="true"
+        [overlay]="true"
+      >
+        <span class="w-20 p-6"></span>
+      </tui-loader>
     </div>
   </div>
 </tui-root>

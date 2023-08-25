@@ -10,6 +10,7 @@ export interface AuthLoadings {
   isLoadingLogin?: boolean;
   isLoadingVerifyToken?: boolean;
   isLoadingRegister?: boolean;
+  isLoadingCheckAuthenticate?: boolean;
 }
 
 export interface AuthErrors {

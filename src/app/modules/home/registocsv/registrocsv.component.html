@@ -1,0 +1,98 @@
+<div class="w-full min-h-screen p-5">
+  <div class="flex flex-col">
+    <div class="flex md:flex-row flex-col w-full flex-1 md:space-x-5">
+      <div
+        class="md:w-[50%] bg-white flex-1 p-4 border-fine rounded-xl mb-4 flex flex-col"
+      >
+        <div class="flex justify-between">
+          <h2 class="text-gray-500 text-lg font-semibold pb-4">
+            Maestro His Ubigeo Inei Reniec
+          </h2>
+          <tui-toggle
+            formControlName="testValue1"
+            size="l"
+            class="custom-toggle"
+            [showIcons]="true"
+          ></tui-toggle>
+        </div>
+        <div class="flex items-center space-x-12">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/657/657695.png"
+            class="w-[100px]"
+          />
+          <ol>
+            <li>
+              <span class="font-bold">Nombre:</span>
+              <span> Maestro His Ubigeo Inei Reniec</span>
+            </li>
+            <li>
+              <span class="font-bold">Cantidad Registros:</span
+              ><span>122200</span>
+            </li>
+            <li>
+              <span class="font-bold">Relaciones:</span>
+              <span class="flex flex-wrap">
+                <tui-tag
+                  class="mt-1 mr-1"
+                  status="primary"
+                  size="s"
+                  [value]="tag1"
+                ></tui-tag>
+                <tui-tag
+                  class="mt-1 mr-1"
+                  status="primary"
+                  size="s"
+                  [value]="tag2"
+                ></tui-tag>
+              </span>
+            </li>
+            <li><span class="font-bold">Num Columnas:</span><span>5</span></li>
+            <li>
+              <span class="font-bold">Estado:</span> <span>Procesado</span>
+            </li>
+          </ol>
+        </div>
+
+        <h2 class="text-gray-500 text-lg font-semibold pb-4 pt-4">Acciones</h2>
+        <div>
+          <button
+            tuiButton
+            type="button"
+            appearance="secondary-destructive"
+            class="tui-space_right-3 tui-space_bottom-3"
+          >
+            Vaciar
+          </button>
+        </div>
+      </div>
+      <div class="md:w-[50%] bg-white flex-1 p-4 border-fine rounded-xl mb-4">
+        <h2 class="text-gray-500 text-lg font-semibold pb-4">
+          Sube tu archivo
+        </h2>
+        <app-formuploadfile></app-formuploadfile>
+      </div>
+    </div>
+    <div class="w-full bg-white flex-1 border-fine rounded-xl p-4">
+      <h2 class="text-gray-500 text-lg font-semibold pb-4">
+        Tabla de Registros
+      </h2>
+      <div *ngIf="hayRegistros" class="m-1">
+        <app-table></app-table>
+      </div>
+      <div *ngIf="!hayRegistros" class="p-4 m-3">
+        <tui-block-status>
+          <img
+            tuiSlot="top"
+            alt="not found"
+            src="https://taiga-ui.dev/assets/images/not-found.svg"
+            class="image"
+          />
+
+          <h4>Registros Vacios</h4>
+
+          Sube el archivo CSV para mostrarlos aqui.
+        </tui-block-status>
+      </div>
+    </div>
+  </div>
+</div>

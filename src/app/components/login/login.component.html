@@ -4,13 +4,22 @@
     class="h-3"
   />
 </ng-template>
+<ng-template #success>
+  <tui-svg src="tuiIconCheck" class="success tui-space_left-3"></tui-svg>
+</ng-template>
 
 <!-- component -->
-<div class="relative py-16">
+<div
+  class="relative py-4 h-screen"
+  style="
+    background-image: url(https://i0.wp.com/moqueguanoticias.pe/wp-content/uploads/2020/07/WhatsApp-Image-2020-07-13-at-11.20.22-AM.jpeg?fit=1080%2C535&ssl=1);
+    background-size: cover;
+  "
+>
   <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-    <div class="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
+    <div class="m-auto w-[300px]">
       <div class="rounded-xl bg-white shadow-xl">
-        <div class="p-6 sm:p-16">
+        <div class="pt-12 pl-8 pr-8 pb-16">
           <div class="space-y-4">
             <img
               src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
@@ -26,17 +35,21 @@
               <p>
                 <tui-input
                   tuiTextfieldSize="m"
-                  formControlName="email"
-                  [tuiTextfieldLabelOutside]="true"
+                  class="mt-2"
+                  [tuiTextfieldCustomContent]="emailControl.valid && success"
+                  [formControl]="emailControl"
                 >
                   Type an email
                   <input tuiTextfield type="email" />
                 </tui-input>
               </p>
+              <span class="text-error-auth" *ngIf="errorDetail">{{
+                errorDetail
+              }}</span>
               <tui-input-password
                 formControlName="password"
                 tuiTextfieldSize="m"
-                class="tui-space_top-2"
+                class="tui-space_top-2 mt-2"
               >
                 Type a password
                 <input tuiTextfield placeholder="Make it secure!" />
@@ -46,10 +59,11 @@
                   class="w-full mt-3 mb-3"
                   [showLoader]="isLoadingLogin$ | async"
                   tuiButton
-                  type="button"
+                  type="submit"
                   appearance="outline"
                   size="m"
-                  (click)="onLogin()"
+                  (click)="onSubmit()"
+                  [disabled]="!isFormValid()"
                 >
                   <div class="flex items-center">
                     <span>Login </span>

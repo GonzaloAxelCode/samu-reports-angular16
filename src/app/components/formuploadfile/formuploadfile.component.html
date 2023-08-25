@@ -1,0 +1,65 @@
+<tui-input-files
+  *ngIf="!control.value"
+  accept=".csv, .CSV"
+  [formControl]="control"
+  (reject)="onReject($event)"
+></tui-input-files>
+
+<tui-files class="tui-space_top-1">
+  <tui-file
+    *ngIf="loadedFiles$ | async as file"
+    [file]="file"
+    [showDelete]="control.enabled"
+    (removed)="removeFile()"
+  ></tui-file>
+
+  <tui-file
+    *ngIf="rejectedFiles$ | async as file"
+    state="error"
+    [file]="file"
+    [showDelete]="control.enabled"
+    (removed)="clearRejected()"
+  ></tui-file>
+
+  <tui-file
+    *ngIf="loadingFiles$ | async as file"
+    state="loading"
+    [file]="file"
+    [showDelete]="control.enabled"
+  ></tui-file>
+  <div>
+    <tui-accordion class="container mt-3" [rounded]="false">
+      <tui-accordion-item borders="top-bottom" [showArrow]="false">
+        <div class="operation-header">
+          <div class="operation-title">Opciones de subida</div>
+          <div class="operation-info">
+            <div class="operation-status">ver Opciones</div>
+          </div>
+        </div>
+        <ng-template tuiAccordionItemContent>
+          <div class="flex w-full space-x-6">
+            <tui-select class="w-full" [formControl]="testValue">
+              Delimitador
+              <input tuiTextfield placeholder="Choose your hero" />
+              <tui-data-list-wrapper
+                *tuiDataList
+                [items]="delimitadores"
+              ></tui-data-list-wrapper>
+            </tui-select>
+            <tui-select class="w-full" [formControl]="testValue2">
+              Enconding
+              <input tuiTextfield placeholder="Choose your hero" />
+              <tui-data-list-wrapper
+                *tuiDataList
+                [items]="encondigs"
+              ></tui-data-list-wrapper>
+            </tui-select>
+          </div>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
+  </div>
+  <div class="w-full pt-3">
+    <button class="w-full" tuiButton type="button">Subir</button>
+  </div>
+</tui-files>

@@ -1,13 +1,9 @@
-.title-logo {
-  font-size: 0.85em;
-  font-weight: 600;
-  color: red;
-}
 
-.activo a {
-  color: red;
-}
-
-.activo .barra-lateral-active {
+.link {
   display: block;
+  margin: 0.75rem 0;
+}
+
+.btn-log-out{
+  background-color: rgb(40, 40, 40);
 }

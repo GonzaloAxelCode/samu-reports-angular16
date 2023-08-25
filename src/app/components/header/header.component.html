@@ -1,8 +1,279 @@
-<!-- 
+<header
+  class="w-full flex item-center z-10 shadow-md sticky top-0 bg-white flex"
+>
+  <nav
+    class="bg-white w-full flex relative justify-between items-center mx-auto px-6 py-3"
+  >
+    <div class="flex item-center space-x-2">
+      <div
+        (click)="toggle(true)"
+        class="block lg:hidden cursor-pointer"
+        (tuiActiveZoneChange)="toggle($event)"
+      >
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="2em"
+            height="1.5em"
+            viewBox="0 0 448 512"
+          >
+            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+        <div *tuiSidebar="open; direction: 'left'">
+          <aside
+            class="z-20 fixed w-64 bg-white dark:bg-gray-800 flex-shrink-0 h-screen"
+          >
+            <div class="py-4 text-gray-500 dark:text-gray-400">
+              <div
+                class="w-full flex flex-col justify-center items-center pt-3 pb-1"
+              >
+                <a
+                  class="text-lg font-bold text-gray-800 dark:text-gray-200"
+                  href="#"
+                >
+                  <img
+                    src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
+                    width="120px"
+                  />
+                </a>
+                <p class="title-logo">Reports</p>
+              </div>
+              <ul class="mt-6">
+                <li class="relative px-6 py-3" routerLinkActive="activo">
+                  <span
+                    class="barra-lateral-active absolute inset-y-0 hidden left-0 w-1 bg-red-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"
+                  ></span>
+                  <a
+                    class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                    routerLink="/home"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                      ></path>
+                    </svg>
+                    <span class="ml-4">Home</span>
+                  </a>
+                </li>
+              </ul>
+              <ul>
+                <li class="relative px-6 py-3" routerLinkActive="activo">
+                  <span
+                    class="barra-lateral-active hidden absolute inset-y-0 left-0 w-1 bg-red-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"
+                  ></span>
+                  <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    routerLink="/upload"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      ></path>
+                    </svg>
+                    <span class="ml-4">Upload</span>
+                  </a>
+                </li>
+                <li class="relative px-6 py-3" routerLinkActive="activo">
+                  <span
+                    class="barra-lateral-active hidden absolute inset-y-0 left-0 w-1 bg-red-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"
+                  ></span>
+                  <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    routerLink="/reports"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      ></path>
+                    </svg>
+                    <span class="ml-4">Reportes</span>
+                  </a>
+                </li>
+                <li class="relative px-6 py-3" routerLinkActive="activo">
+                  <span
+                    class="barra-lateral-active hidden absolute inset-y-0 left-0 w-1 bg-red-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"
+                  ></span>
+                  <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    routerLink="/settings"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                      ></path>
+                      <path
+                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
+                      ></path>
+                    </svg>
+                    <span class="ml-4">Settings</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="px-6 my-6">
+                <button
+                  class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red"
+                >
+                  Salir de Session
+                  <span class="ml-2" aria-hidden="true"> </span>
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <!-- logo -->
+      <div class="inline-flex">
+        <a class="_o6689fn" href="/"
+          ><div class="hidden md:block"></div>
+          <div class="block md:hidden"></div>
+        </a>
+      </div>
+    </div>
+    <!-- end logo -->
 
+    <!-- login -->
+    <div class="flex-initial">
+      <div class="flex justify-end items-center relative">
+        <div class="flex mr-4 items-center">
+          <a
+            class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
+            href="#"
+          >
+            <div
+              class="flex items-center relative cursor-pointer whitespace-nowrap"
+            >
+              Bienvenido al sistema
+            </div>
+          </a>
+          <div class="block relative">
+            <button
+              type="button"
+              class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative"
+            >
+              <div class="flex items-center h-5">
+                <div class="_xpkakx">
+                  <svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    role="presentation"
+                    focusable="false"
+                    style="
+                      display: block;
+                      height: 16px;
+                      width: 16px;
+                      fill: currentcolor;
+                    "
+                  >
+                    <path
+                      d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
 
-  <header
-  class="w-full h-[50px] z-10 py-4 bg-white shadow-md fixed dark:bg-gray-800"
-  ></header>
-  
--->
+        <div class="block">
+          <div class="inline relative">
+            <button
+              type="button"
+              class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg"
+            >
+              <div class="pl-1">
+                <svg
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style="
+                    display: block;
+                    fill: none;
+                    height: 16px;
+                    width: 16px;
+                    stroke: currentcolor;
+                    stroke-width: 3;
+                    overflow: visible;
+                  "
+                >
+                  <g fill="none" fill-rule="nonzero">
+                    <path d="m2 16h28"></path>
+                    <path d="m2 24h28"></path>
+                    <path d="m2 8h28"></path>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
+                <svg
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style="
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    fill: currentcolor;
+                  "
+                >
+                  <path
+                    d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end login -->
+  </nav>
+</header>

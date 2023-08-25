@@ -1,8 +1,0 @@
-{
-    "exportall.config.relExclusion": [
-        "/src/app/modules/index.ts"
-    ],
-    "exportall.config.folderListener": [
-        "/src/app/modules/inicio"
-    ]
-}

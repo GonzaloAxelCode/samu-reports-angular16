@@ -7,6 +7,7 @@ import {
   RegisterType,
   UserAuth,
 } from 'src/app/models/auth.model';
+import { getTokensFromLocalStorage } from '../localstorage/notification.service';
 import { URL_BASE } from './entpoints';
 interface ResponseServiceState {
   errors: any;
@@ -73,6 +74,45 @@ export class AuthService {
         map((response: HttpResponse<any>) => {
           console.log('respose', response);
           if (response.status === 201) {
+            return {
+              errors: {},
+              data: response?.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response?.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
+
+  fetchCheckAuthenticated(): Observable<ResponseServiceState> {
+    const { accessToken }: any = getTokensFromLocalStorage();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    console.log('feching check auth ...');
+    return this.http
+      .post<PostResponse>(
+        `${this.siteURL}/auth/jwt/verify/`,
+        { token: accessToken },
+        {
+          headers,
+          observe: 'response',
+        }
+      )
+
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          console.log('respose', response);
+          if (response.status === 200) {
             return {
               errors: {},
               data: response?.body,

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UploadcsvComponent } from './uploadcsv.component';
+import { RegistrocsvComponent } from './registrocsv.component';
 
 const routes: Routes = [
   {
-    path: 'upload',
-    component: UploadcsvComponent,
+    path: '',
+    component: RegistrocsvComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UploadRoutingModule {}
+export class RegistrocsvRoutingModule {}

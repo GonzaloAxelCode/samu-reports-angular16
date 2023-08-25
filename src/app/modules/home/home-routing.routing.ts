@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  {
+    path: 'registro',
+    loadChildren: () =>
+      import('./registocsv/registocsv.module').then((m) => m.RegistocsvModule),
+  },
 ];
 
 @NgModule({

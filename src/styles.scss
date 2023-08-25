@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import '@taiga-ui/core/styles/taiga-ui-local.scss';
-
+*{
+  transition: 0.1 all;
+}
 body {
   font-family: var(--font-family);
 }

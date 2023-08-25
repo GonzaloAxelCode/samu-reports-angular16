@@ -7,9 +7,12 @@ import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/services/api/auth.service';
 import { saveTokensToLocalStorage } from 'src/app/services/localstorage/notification.service';
 import {
+  checkTokenActionFail,
+  checkTokenActionSuccess,
   loginInActionFail,
   loginInActionSuccess,
-  registerInActionSuccess,
+  registerInActionFail,
+  registerInActionSuccess
 } from '../actions/auth.actions';
 import { startNotificationAction } from '../actions/notification.actions';
 import { AppState } from '../app.state';
@@ -55,34 +58,22 @@ export class AuthEffects {
                   status: 'error',
                 })
               );
+
               return loginInActionFail({
                 refreshToken: '',
                 accessToken: '',
                 isAuthenticated: false,
-                errors: {
-                  detail: response.error,
-                },
+                errors: response?.error?.detail?.error,
               });
             }
           }),
           catchError((error) => {
-            console.log(error);
-            this.store.dispatch(
-              startNotificationAction({
-                message: 'Test',
-                label: 'ERROR CRITICO',
-                status: 'error',
-              })
-            );
-
             this.store.dispatch(
               loginInActionFail({
                 refreshToken: '',
                 accessToken: '',
                 isAuthenticated: false,
-                errors: {
-                  detail: error,
-                },
+                errors: error?.error,
               })
             );
             return EMPTY;
@@ -109,7 +100,7 @@ export class AuthEffects {
                 })
               );
 
-              return registerInActionSuccess();
+              return registerInActionSuccess({});
             } else {
               this.store.dispatch(
                 startNotificationAction({
@@ -118,20 +109,38 @@ export class AuthEffects {
                   status: 'error',
                 })
               );
-              return loginInActionFail({});
+              return registerInActionFail({});
             }
           }),
           catchError((error) => {
             console.log(error);
+
             this.store.dispatch(
-              startNotificationAction({
-                message: 'Algo ocurrio',
-                label: 'Fallo Servidor',
-                status: 'error',
+              registerInActionFail({
+                errors: error?.error,
               })
             );
+            return EMPTY;
+          })
+        )
+      )
+    )
+  );
 
-            this.store.dispatch(loginInActionFail({}));
+  checkAuthenticate$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType('CHECK_TOKEN_ACTION'),
+      mergeMap(() =>
+        this.authService.fetchCheckAuthenticated().pipe(
+          map((response: any) => {
+            if (response.isSuccess) {
+              return checkTokenActionSuccess({});
+            } else {
+              return checkTokenActionFail({});
+            }
+          }),
+          catchError((error) => {
+            this.store.dispatch(checkTokenActionFail({}));
             return EMPTY;
           })
         )

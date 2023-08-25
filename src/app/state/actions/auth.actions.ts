@@ -20,5 +20,25 @@ export const registerInAction = createAction(
   'REGISTER_IN_ACTION',
   props<RegisterType>()
 );
-export const registerInActionFail = createAction('REGISTER_IN_FAIL');
-export const registerInActionSuccess = createAction('REGISTER_IN_SUCCESS');
+export const registerInActionFail = createAction(
+  'REGISTER_IN_FAIL',
+  props<AuthState>()
+);
+export const registerInActionSuccess = createAction(
+  'REGISTER_IN_SUCCESS',
+  props<AuthState>()
+);
+
+export const checkTokenAction = createAction('CHECK_TOKEN_ACTION');
+export const checkTokenActionFail = createAction(
+  'CHECK_TOKEN_FAIL',
+  props<AuthState>()
+);
+export const checkTokenActionSuccess = createAction(
+  'CHECK_TOKEN_SUCCESS',
+  props<AuthState>()
+);
+export const clearTokensAction = createAction(
+  'CLEAR_TOKENS_ACTION',
+  props<AuthState>()
+);

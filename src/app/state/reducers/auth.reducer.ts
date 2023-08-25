@@ -1,7 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthState } from 'src/app/models/auth.model';
-import { getTokensFromLocalStorage } from 'src/app/services/localstorage/notification.service';
 import {
+  getTokensFromLocalStorage
+} from 'src/app/services/localstorage/notification.service';
+import {
+  checkTokenAction,
+  checkTokenActionFail,
+  checkTokenActionSuccess,
+  clearTokensAction,
   loginInAction,
   loginInActionFail,
   loginInActionSuccess,
@@ -19,6 +25,8 @@ export const initialState: AuthState = {
   loadings: {
     isLoadingLogin: false,
     isLoadingVerifyToken: false,
+    isLoadingCheckAuthenticate: false,
+    isLoadingRegister: false,
   },
 };
 
@@ -27,6 +35,7 @@ export const authReducer = createReducer(
   on(loginInAction, (state, payload) => ({
     ...state,
     loadings: {
+      ...state.loadings,
       isLoadingLogin: true,
     },
   })),
@@ -34,6 +43,7 @@ export const authReducer = createReducer(
     ...state,
     ...payload,
     loadings: {
+      ...state.loadings,
       isLoadingLogin: false,
     },
   })),
@@ -41,13 +51,14 @@ export const authReducer = createReducer(
     ...state,
     ...payload,
     loadings: {
+      ...state.loadings,
       isLoadingLogin: false,
     },
   })),
   on(registerInAction, (state, payload) => ({
     ...state,
-
     loadings: {
+      ...state.loadings,
       isLoadingRegister: true,
     },
   })),
@@ -55,6 +66,7 @@ export const authReducer = createReducer(
     ...state,
     ...payload,
     loadings: {
+      ...state.loadings,
       isLoadingRegister: false,
     },
   })),
@@ -62,7 +74,41 @@ export const authReducer = createReducer(
     ...state,
     ...payload,
     loadings: {
+      ...state.loadings,
       isLoadingRegister: false,
     },
-  }))
+  })),
+  on(checkTokenAction, (state, payload) => ({
+    ...state,
+    ...payload,
+    loadings: {
+      ...state.loadings,
+      isLoadingCheckAuthenticate: true,
+    },
+  })),
+  on(checkTokenActionFail, (state, payload) => ({
+    ...state,
+    ...payload,
+    isAuthenticated: false,
+    loadings: {
+      ...state.loadings,
+      isLoadingCheckAuthenticate: false,
+    },
+  })),
+  on(checkTokenActionSuccess, (state, payload) => ({
+    ...state,
+    ...payload,
+    isAuthenticated: true,
+    loadings: {
+      ...state.loadings,
+      isLoadingCheckAuthenticate: false,
+    },
+  })),
+  on(clearTokensAction, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isAuthenticated: false,
+    };
+  })
 );

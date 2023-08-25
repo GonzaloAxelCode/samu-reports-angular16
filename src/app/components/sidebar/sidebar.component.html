@@ -1,10 +1,12 @@
-<aside class="z-20 fixed w-64 bg-white dark:bg-gray-800 flex-shrink-0 h-screen">
+<aside
+  class="hidden lg:block z-20 bg-white dark:bg-gray-800 app-sidebar pr-6 bg-white h-screen fixed top-0 left-0 shadow"
+>
   <div class="py-4 text-gray-500 dark:text-gray-400">
     <div class="w-full flex flex-col justify-center items-center pt-3 pb-1">
       <a class="text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
         <img
           src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
-          width="120px"
+          width="90px"
         />
       </a>
       <p class="title-logo">Reports</p>
@@ -118,7 +120,8 @@
     </ul>
     <div class="px-6 my-6">
       <button
-        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red"
+        (click)="logOut()"
+        class="btn-log-out flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-red"
       >
         Salir de Session <span class="ml-2" aria-hidden="true"> </span>
       </button>
