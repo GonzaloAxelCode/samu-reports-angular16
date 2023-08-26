@@ -1,4 +1,5 @@
 <tui-input-files
+  class="h-[110px]"
   *ngIf="!control.value"
   accept=".csv, .CSV"
   [formControl]="control"
@@ -11,6 +12,7 @@
     [file]="file"
     [showDelete]="control.enabled"
     (removed)="removeFile()"
+    class="h-[110px]"
   ></tui-file>
 
   <tui-file
@@ -22,44 +24,42 @@
   ></tui-file>
 
   <tui-file
+    class="h-[110px]"
     *ngIf="loadingFiles$ | async as file"
     state="loading"
     [file]="file"
     [showDelete]="control.enabled"
   ></tui-file>
   <div>
-    <tui-accordion class="container mt-3" [rounded]="false">
-      <tui-accordion-item borders="top-bottom" [showArrow]="false">
-        <div class="operation-header">
-          <div class="operation-title">Opciones de subida</div>
-          <div class="operation-info">
-            <div class="operation-status">ver Opciones</div>
-          </div>
-        </div>
-        <ng-template tuiAccordionItemContent>
-          <div class="flex w-full space-x-6">
-            <tui-select class="w-full" [formControl]="testValue">
-              Delimitador
-              <input tuiTextfield placeholder="Choose your hero" />
-              <tui-data-list-wrapper
-                *tuiDataList
-                [items]="delimitadores"
-              ></tui-data-list-wrapper>
-            </tui-select>
-            <tui-select class="w-full" [formControl]="testValue2">
-              Enconding
-              <input tuiTextfield placeholder="Choose your hero" />
-              <tui-data-list-wrapper
-                *tuiDataList
-                [items]="encondigs"
-              ></tui-data-list-wrapper>
-            </tui-select>
-          </div>
-        </ng-template>
-      </tui-accordion-item>
-    </tui-accordion>
+    <div class="flex w-full space-x-6 mt-3">
+      <tui-select class="w-full" [formControl]="testValue">
+        Delimitador
+        <input tuiTextfield placeholder="Choose your hero" />
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="delimitadores"
+        ></tui-data-list-wrapper>
+      </tui-select>
+      <tui-select class="w-full" [formControl]="testValue2">
+        Enconding
+        <input tuiTextfield placeholder="Choose your hero" />
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="encondigs"
+        ></tui-data-list-wrapper>
+      </tui-select>
+    </div>
   </div>
   <div class="w-full pt-3">
-    <button class="w-full" tuiButton type="button">Subir</button>
+    <button
+      class="w-full"
+      tuiButton
+      type="button"
+      (click)="onSubmit()"
+      [disabled]="!control.value"
+      [showLoader]="isLoadingUpload$ | async"
+    >
+      Subir
+    </button>
   </div>
 </tui-files>

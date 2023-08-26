@@ -38,31 +38,40 @@
                   size="s"
                   [value]="tag1"
                 ></tui-tag>
-                <tui-tag
-                  class="mt-1 mr-1"
-                  status="primary"
-                  size="s"
-                  [value]="tag2"
-                ></tui-tag>
               </span>
             </li>
-            <li><span class="font-bold">Num Columnas:</span><span>5</span></li>
+            <li><span class="font-bold">Num Columnas:</span><span>9</span></li>
             <li>
               <span class="font-bold">Estado:</span> <span>Procesado</span>
             </li>
           </ol>
         </div>
+        <h2 class="text-gray-500 text-lg font-semibold pb-4 pt-4"></h2>
+        <div class="flex flex-wrap">
+          <button
+            tuiButton
+            type="button"
+            appearance="primary"
+            class="tui-space_right-3 tui-space_bottom-3 mr-2"
+          >
+            Exportar
+          </button>
 
-        <h2 class="text-gray-500 text-lg font-semibold pb-4 pt-4">Acciones</h2>
-        <div>
           <button
             tuiButton
             type="button"
             appearance="secondary-destructive"
-            class="tui-space_right-3 tui-space_bottom-3"
+            class="tui-space_right-3 tui-space_bottom-3 mr-2"
           >
             Vaciar
           </button>
+          <button
+            tuiButton
+            type="button"
+            appearance="icon"
+            icon="tuiIconAlertCircleLarge"
+            class="tui-space_right-3 tui-space_bottom-3 mr-2"
+          ></button>
         </div>
       </div>
       <div class="md:w-[50%] bg-white flex-1 p-4 border-fine rounded-xl mb-4">

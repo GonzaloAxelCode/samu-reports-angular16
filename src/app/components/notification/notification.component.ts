@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { TuiAlertService } from '@taiga-ui/core';
 import { Observable } from 'rxjs';
 import { NotificationState } from 'src/app/models/notification.model';
+import { stopNotificationAction } from 'src/app/state/actions/notification.actions';
 import { selectNotification } from 'src/app/state/selectors/notification.selectors';
 
 @Component({
@@ -26,6 +27,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.showNotification$ = this.store.select(selectNotification);
+
     this.showNotification$.subscribe((state: NotificationState) => {
       if (state.show) {
         this.alerts
@@ -33,7 +35,7 @@ export class NotificationComponent implements OnInit {
           .subscribe();
 
         setTimeout(() => {
-          this.store.dispatch({ type: 'STOP_NOTIFICATION' });
+          this.store.dispatch(stopNotificationAction({}));
         }, 3000);
       }
     });

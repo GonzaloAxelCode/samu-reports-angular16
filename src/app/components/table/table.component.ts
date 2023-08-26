@@ -1,45 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TuiComparator } from '@taiga-ui/addon-table';
-import { TuiDay, tuiToInt } from '@taiga-ui/cdk';
-
-interface User {
-  readonly name: string;
-  readonly dob: TuiDay;
-}
-
-const TODAY = TuiDay.currentLocal();
-const FIRST = [
-  'John',
-  'Jane',
-  'Jack',
-  'Jill',
-  'James',
-  'Joan',
-  'Jim',
-  'Julia',
-  'Joe',
-  'Julia',
-];
-
-const LAST = [
-  'Smith',
-  'West',
-  'Brown',
-  'Jones',
-  'Davis',
-  'Miller',
-  'Johnson',
-  'Jackson',
-  'Williams',
-  'Wilson',
-];
-
-const DATA: readonly User[] = Array.from({ length: 10 }, () => ({
-  name: `${LAST[Math.floor(Math.random() * 10)]}, ${
-    FIRST[Math.floor(Math.random() * 10)]
-  }`,
-  dob: TODAY.append({ day: -Math.floor(Math.random() * 4000) - 7500 }),
-}));
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectRegistros } from 'src/app/state/selectors/upload.selectors';
 
 @Component({
   selector: 'app-table',
@@ -48,23 +10,29 @@ const DATA: readonly User[] = Array.from({ length: 10 }, () => ({
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
-  readonly data = DATA;
+  columns: any = [
+    { id: 'Codigo_Departamento_Inei', title: 'Código Departamento INEI' },
+    { id: 'Codigo_Departamento_Reniec', title: 'Código Departamento Reniec' },
+    { id: 'Codigo_Distrito_Inei', title: 'Código Distrito INEI' },
+    { id: 'Codigo_Distrito_Reniec', title: 'Código Distrito Reniec' },
+    { id: 'Codigo_Provincia_Inei', title: 'Código Provincia INEI' },
+    { id: 'Codigo_Provincia_Reniec', title: 'Código Provincia Reniec' },
+    { id: 'Departamento', title: 'Departamento' },
+    { id: 'Provincia', title: 'Provincia' },
+    { id: 'Distrito', title: 'Distrito' },
+  ];
 
-  readonly columns = ['name', 'dob', 'age'];
-
-  readonly ageSorter: TuiComparator<User> = (a: User, b: User) =>
-    getAge(a) - getAge(b);
-
-  getAge(user: User): number {
-    return getAge(user);
+  constructor(private store: Store<any>) {
+    this.selectRegistros$ = this.store.select(selectRegistros);
   }
-}
-
-function getAge({ dob }: User): number {
-  const years = TODAY.year - dob.year;
-  const months = TODAY.month - dob.month;
-  const days = TODAY.day - dob.day;
-  const offset = tuiToInt(months > 0 || (!months && days > 9));
-
-  return years + offset;
+  selectRegistros$: Observable<any> = new Observable();
+  registros: any = [];
+  ngOnInit(): void {
+    this.selectRegistros$.subscribe((data) => {
+      if (data) {
+        console.log(data);
+        this.registros = data?.slice(0, 100);
+      }
+    });
+  }
 }

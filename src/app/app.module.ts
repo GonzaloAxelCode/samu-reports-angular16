@@ -36,6 +36,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ROOT_REDUCER } from './state/app.state';
 import { AuthEffects } from './state/effects/auth.effects';
+import { UploadEffects } from './state/effects/uploadcsv.effects';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { AuthEffects } from './state/effects/auth.effects';
     RouterLinkActive,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects,UploadEffects]),
     HttpClientModule,
     TuiRootModule,
     TuiDialogModule,
