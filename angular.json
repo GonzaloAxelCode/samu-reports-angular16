@@ -34,7 +34,7 @@
             "styles": [
               "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
               "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-
+              "src/styles-tailwindcss.css",
               "src/styles.scss"
             ],
             "scripts": ["node_modules/apexcharts/dist/apexcharts.min.js"]
@@ -95,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c05c88e1-bb7e-4f0e-96c2-014da1011184"
   }
 }

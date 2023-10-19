@@ -1,27 +1,21 @@
 <tui-root>
-  <div *ngIf="(isLoadingCheckAuthenticate$ | async) == false">
-    <div
-      *ngIf="(isAuthenticated$ | async) == true"
-      class="flex h-screen dark:bg-gray-900"
-    >
+  <div>
+    <div class="flex h-screen dark:bg-gray-900">
       <div class="flex flex-col flex-1 w-full">
         <app-notification></app-notification>
-        <main class="bg-gray-50">
-          <app-sidebar></app-sidebar>
-          <div
-            class="h-full sticky top-5 contenido contenido flex-1 lg:ml-[217px] ml-0"
-          >
-            <app-header></app-header>
-            <router-outlet></router-outlet>
-          </div>
+        <main class="min-h-screeen w-full">
+          <router-outlet></router-outlet>
         </main>
       </div>
     </div>
+    <!---
     <div *ngIf="(isAuthenticated$ | async) == false">
-      <app-login></app-login>
-      <app-register></app-register>
-    </div>
+        <app-login></app-login>
+        <app-register></app-register>
+      </div>
+    -->
   </div>
+  <!---
   <div
     *ngIf="(isLoadingCheckAuthenticate$ | async) == true"
     class="flex items-center justify-center h-screen"
@@ -42,5 +36,5 @@
         <span class="w-20 p-6"></span>
       </tui-loader>
     </div>
-  </div>
+  </div -->>
 </tui-root>

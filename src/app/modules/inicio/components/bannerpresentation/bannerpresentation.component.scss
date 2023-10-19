@@ -1,0 +1,31 @@
+.banner-image-url1 {
+  background-image: url("https://7oroof.com/demos/medcity/assets/images/sliders/2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scale: 1.03;
+
+  height: 85vh;
+}
+
+.banner-image-url2 {
+  background-image: url("https://7oroof.com/demos/medcity/assets/images/sliders/2.jpg");
+  background-position: center;
+  background-size: 100% 100%; /* 100% de ancho y 100% de altura */
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Proporción de aspecto 16:9 (9 / 16 * 100%) */
+  scale: 1.03;
+  background-repeat: no-repeat;
+}
+.banner-image-url3 {
+  background-image: url("https://7oroof.com/demos/medcity/assets/images/sliders/2.jpg");
+
+  background-position: center;
+  background-size: 100% 100%; /* 100% de ancho y 100% de altura */
+  height: 0;
+  padding-bottom: 56.25%; /* Proporción de aspecto 16:9 (9 / 16 * 100%) */
+  width: 100%;
+  background-repeat: no-repeat;
+  scale: 1.03;
+}

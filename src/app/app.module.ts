@@ -29,11 +29,11 @@ import {
 } from '@taiga-ui/kit';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+
+import { ArrowIconComponent } from './UIComponents/Icons/arrow-icon/arrow-icon.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { RegisterComponent } from './components/register/register.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ROOT_REDUCER } from './state/app.state';
 import { AuthEffects } from './state/effects/auth.effects';
 import { UploadEffects } from './state/effects/uploadcsv.effects';
@@ -41,12 +41,10 @@ import { UploadEffects } from './state/effects/uploadcsv.effects';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    HeaderComponent,
     NotificationComponent,
     LoginComponent,
     RegisterComponent,
-    
+    ArrowIconComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +53,7 @@ import { UploadEffects } from './state/effects/uploadcsv.effects';
     RouterLinkActive,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
-    EffectsModule.forRoot([AuthEffects,UploadEffects]),
+    EffectsModule.forRoot([AuthEffects, UploadEffects]),
     HttpClientModule,
     TuiRootModule,
     TuiDialogModule,
@@ -63,7 +61,6 @@ import { UploadEffects } from './state/effects/uploadcsv.effects';
     TuiSidebarModule,
     TuiActiveZoneModule,
     TuiSvgModule,
-    //asdas
     FormsModule,
     TuiInputModule,
     ReactiveFormsModule,
