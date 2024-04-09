@@ -13,10 +13,10 @@ module.exports = {
         "10xl": "75px",
       },
       screens: {
-        'sm': '640px',   // Breakpoint personalizado para pantallas pequeñas
-        'md': '768px',   // Breakpoint personalizado para pantallas medianas
-        'mdd': '869px',   // Breakpoint personalizado para pantallas medianas
-        'lg': '1024px',  // Breakpoint personalizado para pantallas grandes
+        sm: "640px", // Breakpoint personalizado para pantallas pequeñas
+        md: "768px", // Breakpoint personalizado para pantallas medianas
+        mdd: "869px", // Breakpoint personalizado para pantallas medianas
+        lg: "1024px", // Breakpoint personalizado para pantallas grandes
       },
     },
   },

@@ -9,10 +9,11 @@ import { saveTokensToLocalStorage } from 'src/app/services/localstorage/notifica
 import {
   checkTokenActionFail,
   checkTokenActionSuccess,
+  clearTokensAction,
   loginInActionFail,
   loginInActionSuccess,
   registerInActionFail,
-  registerInActionSuccess
+  registerInActionSuccess,
 } from '../actions/auth.actions';
 import { startNotificationAction } from '../actions/notification.actions';
 import { AppState } from '../app.state';
@@ -31,7 +32,6 @@ export class AuthEffects {
       mergeMap(({ email, password }) =>
         this.authService.fetchCreateToken({ email, password }).pipe(
           map((response: any) => {
-            console.log(response);
             if (response.isSuccess) {
               saveTokensToLocalStorage({
                 accessToken: response.data?.access,
@@ -89,7 +89,6 @@ export class AuthEffects {
       mergeMap((payload) =>
         this.authService.fetchRegisterUser(payload).pipe(
           map((response: any) => {
-            console.log(response);
             if (response.isSuccess) {
               this.store.dispatch(
                 startNotificationAction({
@@ -100,7 +99,7 @@ export class AuthEffects {
                 })
               );
 
-              return registerInActionSuccess({});
+              return registerInActionSuccess();
             } else {
               this.store.dispatch(
                 startNotificationAction({
@@ -113,8 +112,6 @@ export class AuthEffects {
             }
           }),
           catchError((error) => {
-            console.log(error);
-
             this.store.dispatch(
               registerInActionFail({
                 errors: error?.error,
@@ -134,13 +131,13 @@ export class AuthEffects {
         this.authService.fetchCheckAuthenticated().pipe(
           map((response: any) => {
             if (response.isSuccess) {
-              return checkTokenActionSuccess({});
+              return checkTokenActionSuccess();
             } else {
-              return checkTokenActionFail({});
+              return checkTokenActionFail();
             }
           }),
           catchError((error) => {
-            this.store.dispatch(checkTokenActionFail({}));
+            this.store.dispatch(checkTokenActionFail());
             return EMPTY;
           })
         )

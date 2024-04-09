@@ -1,44 +1,52 @@
 import { createAction, props } from '@ngrx/store';
 import { AuthState, LoginType, RegisterType } from 'src/app/models/auth.model';
+export enum ActionTypes {
+  LOGIN_IN_ACTION = 'LOGIN_IN_ACTION',
+  LOGIN_IN_SUCCESS = 'LOGIN_IN_SUCCESS',
+  LOGIN_IN_FAIL = 'LOGIN_IN_FAIL',
+  REGISTER_IN_ACTION = 'REGISTER_IN_ACTION',
+  REGISTER_IN_SUCCESS = 'REGISTER_IN_SUCCESS',
+  REGISTER_IN_FAIL = 'REGISTER_IN_FAIL',
+  CHECK_TOKEN_ACTION = 'CHECK_TOKEN_ACTION',
+  CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS',
+  CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL',
+  CLEAR_TOKENS_ACTION = 'CLEAR_TOKENS_ACTION',
+}
 
 export const loginInAction = createAction(
-  'LOGIN_IN_ACTION',
+  ActionTypes.LOGIN_IN_ACTION,
   props<LoginType>()
 );
 
 export const loginInActionSuccess = createAction(
-  'LOGIN_IN_SUCCESS',
+  ActionTypes.LOGIN_IN_SUCCESS,
   props<AuthState>()
 );
 
 export const loginInActionFail = createAction(
-  'LOGIN_IN_FAIL',
+  ActionTypes.LOGIN_IN_FAIL,
   props<AuthState>()
 );
 
 export const registerInAction = createAction(
-  'REGISTER_IN_ACTION',
+  ActionTypes.REGISTER_IN_ACTION,
   props<RegisterType>()
 );
+
 export const registerInActionFail = createAction(
-  'REGISTER_IN_FAIL',
-  props<AuthState>()
-);
-export const registerInActionSuccess = createAction(
-  'REGISTER_IN_SUCCESS',
+  ActionTypes.REGISTER_IN_FAIL,
   props<AuthState>()
 );
 
-export const checkTokenAction = createAction('CHECK_TOKEN_ACTION');
-export const checkTokenActionFail = createAction(
-  'CHECK_TOKEN_FAIL',
-  props<AuthState>()
+export const registerInActionSuccess = createAction(
+  ActionTypes.REGISTER_IN_SUCCESS
 );
+
+export const checkTokenAction = createAction(ActionTypes.CHECK_TOKEN_ACTION);
+export const checkTokenActionFail = createAction(ActionTypes.CHECK_TOKEN_FAIL);
+
 export const checkTokenActionSuccess = createAction(
-  'CHECK_TOKEN_SUCCESS',
-  props<AuthState>()
+  ActionTypes.CHECK_TOKEN_SUCCESS
 );
-export const clearTokensAction = createAction(
-  'CLEAR_TOKENS_ACTION',
-  props<AuthState>()
-);
+
+export const clearTokensAction = createAction(ActionTypes.CLEAR_TOKENS_ACTION);

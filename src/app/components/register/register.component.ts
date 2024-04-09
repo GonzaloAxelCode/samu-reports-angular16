@@ -62,7 +62,7 @@ export class RegisterComponent {
         this.errorPassword1 = data?.password?.[0] || false;
         this.errorPassword2 = data?.password?.[1] || false;
         this.errorPassword3 = data?.password?.[2] || false;
-        this.non_field_errors= data?.non_field_errors?.[0] || false
+        this.non_field_errors = data?.non_field_errors?.[0] || false;
       }
     });
   }
@@ -78,7 +78,6 @@ export class RegisterComponent {
     if (this.testForm.valid) {
       const formData: any = this.testForm.value;
       this.store.dispatch(registerInAction(formData));
-      console.log(formData);
     }
   }
 

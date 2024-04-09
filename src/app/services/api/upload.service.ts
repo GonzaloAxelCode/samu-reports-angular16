@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -32,7 +32,6 @@ export class UploadService {
     formData.append('delimiter', delimiter);
     formData.append('encode', encode);
 
-    console.log('feching upload ...');
     return this.http
       .post<PostResponse>(
         `${this.siteURL}/api/upload-csv-${nameModel}`,
@@ -44,11 +43,9 @@ export class UploadService {
 
       .pipe(
         catchError((error: any) => {
-          console.log(error);
           return throwError(error);
         }),
         map((response: HttpResponse<any>) => {
-          console.log('respose', response);
           if (response.status === 200 || response.status === 201) {
             return {
               errors: {},
@@ -69,8 +66,6 @@ export class UploadService {
   fetchGetRegistros(nameModel: string): Observable<ResponseServiceState> {
     const { accessToken }: any = getTokensFromLocalStorage();
 
-    console.log('fetching  all registers for :', nameModel);
-
     return this.http
       .get(`${this.siteURL}/api/get-all-${nameModel}`, {
         headers: {
@@ -80,15 +75,78 @@ export class UploadService {
       })
       .pipe(
         catchError((error: any) => {
-          console.log(error);
           return throwError(error);
         }),
         map((response: HttpResponse<any>) => {
-          console.log('response', response);
           if (response.status === 200) {
             return {
               errors: {},
               data: response?.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response?.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
+  fetchGetModels(): Observable<ResponseServiceState> {
+    const { accessToken }: any = getTokensFromLocalStorage();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    return this.http
+      .get<any>(`${this.siteURL}/api/get-data-models`, {
+        headers,
+        observe: 'response',
+      })
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          if (response.status === 200) {
+            return {
+              errors: {},
+              data: response?.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response?.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
+
+  fetchEmptyModelRecords(nameModel: string): Observable<ResponseServiceState> {
+    const { accessToken }: any = getTokensFromLocalStorage();
+
+    return this.http
+      .delete(`${this.siteURL}/api/delete-all-${nameModel}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        observe: 'response',
+      })
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          if (response.status === 204 || response.status === 200) {
+            return {
+              errors: {},
+              data: {},
               isSuccess: true,
             };
           } else {

@@ -8,6 +8,12 @@ import {
   uploadLoadRegistros,
   uploadLoadRegistrosFail,
   uploadLoadRegistrosSuccess,
+  loadAllModelsSuccess,
+  loadAllModelsFail,
+  loadAllModels,
+  emptyModelRecordsAction,
+  emptyModelRecordsSuccess,
+  emptyModelRecordsFail,
 } from '../actions/uploadcsv.actions';
 
 export const initialState: UploadState = {
@@ -15,7 +21,10 @@ export const initialState: UploadState = {
   errors: {},
   isLoading: false,
   data: {},
+  dataModels: [],
   isLoadingLoadRegistros: false,
+  isLoadingLoadDataModels: false,
+  isLoadingEmptyModelRecords: false,
 };
 
 export const uploadReducer = createReducer(
@@ -48,6 +57,7 @@ export const uploadReducer = createReducer(
       isLoadingLoadRegistros: true,
     };
   }),
+
   on(uploadLoadRegistrosSuccess, (state, payload) => {
     return {
       ...state,
@@ -60,6 +70,49 @@ export const uploadReducer = createReducer(
       ...state,
       ...payload,
       isLoadingLoadRegistros: false,
+    };
+  }),
+
+  on(loadAllModels, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingLoadDataModels: true,
+    };
+  }),
+  on(loadAllModelsSuccess, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingLoadDataModels: false,
+    };
+  }),
+  on(loadAllModelsFail, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingLoadDataModels: false,
+    };
+  }),
+  on(emptyModelRecordsAction, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingEmptyModelRecords: true,
+    };
+  }),
+  on(emptyModelRecordsSuccess, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingEmptyModelRecords: false,
+    };
+  }),
+  on(emptyModelRecordsFail, (state, payload) => {
+    return {
+      ...state,
+      ...payload,
+      isLoadingEmptyModelRecords: false,
     };
   })
 );

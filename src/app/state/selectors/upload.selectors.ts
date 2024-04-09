@@ -18,3 +18,22 @@ export const selectRegistros = createSelector(
   selectUploadCsvState,
   (state: UploadState) => state.registros?.results?.slice(0, 100)
 );
+
+export const selectAllModels = createSelector(
+  selectUploadCsvState,
+  (state: UploadState) => state.dataModels
+);
+export const selectLoadingAllModels = createSelector(
+  selectUploadCsvState,
+  (state: UploadState) => state.isLoadingLoadDataModels
+);
+
+export const selectGetCurrentNameModel = createSelector(
+  selectUploadCsvState,
+  (state: UploadState) => state.nameModel
+);
+
+export const selectLoadingEmptyModelRecords = createSelector(
+  selectUploadCsvState,
+  (state: UploadState) => state.isLoadingEmptyModelRecords
+);

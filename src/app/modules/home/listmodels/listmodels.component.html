@@ -1,0 +1,88 @@
+<main class="main">
+  <div class="responsive-wrapper">
+    <div class="main-header">
+      <h1>Lista de modelos</h1>
+      <div class="search">
+        <input type="text" placeholder="Search" />
+        <button type="submit">
+          <i class="ph-magnifying-glass-bold"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="content-header">
+      <div class="content-header-intro">
+        <h2>Intergrations and connected apps</h2>
+        <p>Supercharge your workflow and connect the tool you use every day.</p>
+      </div>
+      <div class="content-header-actions">
+        <a href="#" class="button">
+          <i class="ph-faders-bold"></i>
+          <span>Filters</span>
+        </a>
+        <a href="#" class="button">
+          <i class="ph-plus-bold"></i>
+          <span>Request integration</span>
+        </a>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content-panel">
+        <div class="vertical-tabs">
+          <a href="#" class="active">View all</a>
+          <a href="#">Developer tools</a>
+          <a href="#">Communication</a>
+          <a href="#">Productivity</a>
+          <a href="#">Browser tools</a>
+          <a href="#">Marketplace</a>
+        </div>
+      </div>
+      <div class="content-main">
+        <div class="card-grid">
+          <article *ngFor="let model of models" class="card">
+            <div class="card-header">
+              <div>
+                <span
+                  ><img
+                    src="https://cdn-icons-png.freepik.com/512/8686/8686102.png"
+                /></span>
+                <h3>
+                  <a
+                    [routerLink]="[
+                      '/home/registro',
+                      model.nombre_modelo.toLowerCase()
+                    ]"
+                  >
+                    <b>
+                      {{ model.title }}
+                    </b>
+                  </a>
+                </h3>
+              </div>
+              <label class="">
+                <input
+                  tuiToggle
+                  type="checkbox"
+                  disabled="true"
+                  [(ngModel)]="model.tiene_datos"
+                />
+              </label>
+            </div>
+            <div class="card-body">
+              <p>{{ model.title }}</p>
+            </div>
+            <div class="card-footer">
+              <a
+                routerLink="/home/registro/{{
+                  model.nombre_modelo.toLowerCase()
+                }}"
+              >
+                <b>Ver detalles</b>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

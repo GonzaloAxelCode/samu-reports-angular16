@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectRegistros } from 'src/app/state/selectors/upload.selectors';
@@ -10,7 +10,9 @@ import { selectRegistros } from 'src/app/state/selectors/upload.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
-  columns: any = [
+  @Input() columns: any[] = [];
+
+  columns_: any = [
     { id: 'Codigo_Departamento_Inei', title: 'Código Departamento INEI' },
     { id: 'Codigo_Departamento_Reniec', title: 'Código Departamento Reniec' },
     { id: 'Codigo_Distrito_Inei', title: 'Código Distrito INEI' },
@@ -27,10 +29,19 @@ export class TableComponent {
   }
   selectRegistros$: Observable<any> = new Observable();
   registros: any = [];
+  getDataModels$: Observable<any> = new Observable();
+
+  models: any = [];
+  detailModelInfo: any = {
+    title: '',
+    count: 0,
+    nombre_modelo: '',
+    tiene_datos: false,
+    properties: [],
+  };
   ngOnInit(): void {
     this.selectRegistros$.subscribe((data) => {
       if (data) {
-        console.log(data);
         this.registros = data?.slice(0, 100);
       }
     });

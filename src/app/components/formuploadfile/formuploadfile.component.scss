@@ -55,3 +55,8 @@
 .buttons {
   display: flex;
 }
+
+.t-dropdown{
+  position: relative;
+  z-index: 50;
+}

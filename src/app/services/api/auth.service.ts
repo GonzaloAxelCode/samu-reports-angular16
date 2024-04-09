@@ -7,6 +7,7 @@ import {
   RegisterType,
   UserAuth,
 } from 'src/app/models/auth.model';
+
 import { getTokensFromLocalStorage } from '../localstorage/notification.service';
 import { URL_BASE } from './entpoints';
 interface ResponseServiceState {
@@ -26,7 +27,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    console.log('fetching ...');
+
     return this.http
       .post<PostResponse>(`${this.siteURL}/auth/jwt/create/`, userAuth, {
         headers,
@@ -38,7 +39,6 @@ export class AuthService {
           return throwError(error);
         }),
         map((response: HttpResponse<any>) => {
-          console.log('respose', response);
           if (response.status === 200) {
             return {
               errors: {},
@@ -60,7 +60,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    console.log('fetching ...');
+
     return this.http
       .post<PostResponse>(`${this.siteURL}/auth/users/`, user, {
         headers,
@@ -72,7 +72,6 @@ export class AuthService {
           return throwError(error);
         }),
         map((response: HttpResponse<any>) => {
-          console.log('respose', response);
           if (response.status === 201) {
             return {
               errors: {},
@@ -95,7 +94,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    console.log('feching check auth ...');
+
     return this.http
       .post<PostResponse>(
         `${this.siteURL}/auth/jwt/verify/`,
@@ -111,7 +110,6 @@ export class AuthService {
           return throwError(error);
         }),
         map((response: HttpResponse<any>) => {
-          console.log('respose', response);
           if (response.status === 200) {
             return {
               errors: {},

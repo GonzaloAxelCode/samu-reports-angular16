@@ -30,26 +30,26 @@
     [file]="file"
     [showDelete]="control.enabled"
   ></tui-file>
-  <div>
-    <div class="flex w-full space-x-6 mt-3">
-      <tui-select class="w-full" [formControl]="testValue">
-        Delimitador
-        <input tuiTextfield placeholder="Choose your hero" />
-        <tui-data-list-wrapper
-          *tuiDataList
-          [items]="delimitadores"
-        ></tui-data-list-wrapper>
-      </tui-select>
-      <tui-select class="w-full" [formControl]="testValue2">
-        Enconding
-        <input tuiTextfield placeholder="Choose your hero" />
-        <tui-data-list-wrapper
-          *tuiDataList
-          [items]="encondigs"
-        ></tui-data-list-wrapper>
-      </tui-select>
-    </div>
+
+  <div class="flex w-full space-x-6 mt-3">
+    <tui-select class="w-full" [formControl]="testValue">
+      Delimitador
+      <input tuiTextfield placeholder="Choose your hero" />
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="delimitadores"
+      ></tui-data-list-wrapper>
+    </tui-select>
+    <tui-select class="w-full" [formControl]="testValue2">
+      Enconding
+      <input tuiTextfield placeholder="Choose your hero" />
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="encondigs"
+      ></tui-data-list-wrapper>
+    </tui-select>
   </div>
+
   <div class="w-full pt-3">
     <button
       class="w-full"

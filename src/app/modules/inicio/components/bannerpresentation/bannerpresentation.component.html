@@ -12,6 +12,7 @@
     </p>
     <div class="grid-cols-1 grid sm:grid-cols-2 gap-3 my-3 xl:w-[80%]">
       <button
+        (click)="showDialog(template)"
         class="bg-red-500 text-white font-bold flex items-center space-x-3 py-3 px-5 rounded-3xl justify-between"
       >
         <span class="text-sm"> Sistema de Llamadas </span>
@@ -33,3 +34,17 @@
     />
   </div>
 </div>
+
+<ng-template #template let-observer>
+  <div class="w-[350px] m-auto">
+    <app-login></app-login>
+  </div>
+</ng-template>
+
+<!--- 
+
+ <div *ngIf="(isAuthenticated$ | async) == false">
+         
+          <app-register></app-register>
+        </div>
+-->

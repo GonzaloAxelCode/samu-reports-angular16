@@ -31,12 +31,15 @@ export class NotificationComponent implements OnInit {
     this.showNotification$.subscribe((state: NotificationState) => {
       if (state.show) {
         this.alerts
-          .open(state.message, { label: state.label, status: state.status })
+          .open(state.message, {
+            label: state.label,
+            status: state.status,
+            autoClose: false,
+          })
           .subscribe();
-
         setTimeout(() => {
           this.store.dispatch(stopNotificationAction({}));
-        }, 3000);
+        }, 5000);
       }
     });
   }

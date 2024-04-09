@@ -30,3 +30,29 @@ export const uploadLoadRegistrosFail = createAction(
   'LOAD_REGISTROS_FAIL',
   props<UploadState>()
 );
+
+export const loadAllModels = createAction('LOAD_ALL_MODELS');
+
+export const loadAllModelsSuccess = createAction(
+  'LOAD_ALL_MODELS_SUCCESS',
+  props<UploadState>()
+);
+
+export const loadAllModelsFail = createAction(
+  'LOAD_ALL_MODELS_FAIL',
+  props<UploadState>()
+);
+
+export const emptyModelRecordsAction = createAction(
+  'EMPTY_MODEL_RECORDS_ACTION',
+  props<UploadState>()
+);
+
+export const emptyModelRecordsSuccess = createAction(
+  'EMPTY_MODEL_RECORDS_SUCCESS'
+);
+
+export const emptyModelRecordsFail = createAction(
+  'EMPTY_MODEL_RECORDS_FAIL',
+  props<UploadState>()
+);

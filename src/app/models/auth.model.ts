@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export interface AuthState {
   errors?: AuthErrors;
   loadings?: AuthLoadings;
@@ -57,4 +59,16 @@ export interface RegisterType {
   email?: string;
   password?: string;
   re_password?: string;
+}
+
+export interface AuthEffectsInterface {
+  loginInEffect$: Observable<any>;
+  registerInEffect$: Observable<any>;
+  checkAuthenticateEffect$: Observable<any>;
+
+  handleResponseLogin(response: any): void;
+  handleCatchErrorLogin(error: any): Observable<never>;
+  handleResponseRegister(response: any): void;
+  handleCatchErrorRegister(error: any): Observable<never>;
+  handleCheckAuth(): Observable<any>;
 }

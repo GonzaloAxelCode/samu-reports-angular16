@@ -8,6 +8,7 @@ import { finalize, map, switchMap } from 'rxjs/operators';
 import { UploadCsvData } from 'src/app/models/upload.state';
 import { uploadCsvAction } from 'src/app/state/actions/uploadcsv.actions';
 import {
+  selectGetCurrentNameModel,
   selectInfoUpload,
   selectLoadingUpload,
 } from 'src/app/state/selectors/upload.selectors';
@@ -28,8 +29,10 @@ import {
 export class FormuploadfileComponent {
   constructor(private store: Store<any>) {}
   isLoadingUpload$: Observable<any> = new Observable();
+  selectCurrentNameModel$: Observable<any> = new Observable();
   selectInfoUpload$: Observable<any> = new Observable();
   infoUpload: any = {};
+  currentNameModel: string = '';
   delimitadores = ['Punto y Coma (;)', 'Coma (,)', 'Barra (|)'];
   encondigs = ['utf-8', 'latin1'];
 
@@ -47,11 +50,16 @@ export class FormuploadfileComponent {
   ngOnInit(): void {
     this.isLoadingUpload$ = this.store.select(selectLoadingUpload);
     this.selectInfoUpload$ = this.store.select(selectInfoUpload);
+    this.selectCurrentNameModel$ = this.store.select(selectGetCurrentNameModel);
 
+    this.selectCurrentNameModel$.subscribe((nameModel) => {
+      if (nameModel) {
+        this.currentNameModel = nameModel;
+      }
+    });
     this.selectInfoUpload$.subscribe((data) => {
       if (data) {
         this.infoUpload = data;
-        console.log(this.infoUpload);
       }
     });
   }
@@ -90,14 +98,13 @@ export class FormuploadfileComponent {
   onSubmit(): void {
     const uploadData: UploadCsvData = {
       file: this.control.value,
-      nameModel: 'maestro_his_ubigeo_inei_reniec',
+      nameModel: this.currentNameModel,
       encode: this.testValue2?.value as string,
       delimiter: extraerContenidoEntreParentesis(
         this.testValue?.value as string
       ) as string,
     };
 
-    console.log(uploadData);
     this.store.dispatch(uploadCsvAction(uploadData));
   }
 }

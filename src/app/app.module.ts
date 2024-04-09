@@ -1,3 +1,4 @@
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -10,11 +11,13 @@ import {
   TuiSvgModule,
   TuiTextfieldControllerModule,
   tuiNotificationOptionsProvider,
+  TUI_SANITIZER,
 } from '@taiga-ui/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterLinkActive } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
+import { TuiBadgeModule } from '@taiga-ui/kit';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
@@ -27,29 +30,24 @@ import {
   TuiInputModule,
   TuiInputPasswordModule,
 } from '@taiga-ui/kit';
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
-import { ArrowIconComponent } from './UIComponents/Icons/arrow-icon/arrow-icon.component';
-import { LoginComponent } from './components/login/login.component';
 import { NotificationComponent } from './components/notification/notification.component';
-import { RegisterComponent } from './components/register/register.component';
+
 import { ROOT_REDUCER } from './state/app.state';
 import { AuthEffects } from './state/effects/auth.effects';
 import { UploadEffects } from './state/effects/uploadcsv.effects';
+import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
+import { LayoutModule } from './modules/layout/layout.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotificationComponent,
-    LoginComponent,
-    RegisterComponent,
-    ArrowIconComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
+    LayoutModule,
+    RouterModule.forRoot([{ path: '**', component: PageNotFoundComponent }]),
     RouterLinkActive,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
@@ -57,6 +55,7 @@ import { UploadEffects } from './state/effects/uploadcsv.effects';
     HttpClientModule,
     TuiRootModule,
     TuiDialogModule,
+    TuiBadgeModule,
     TuiAlertModule,
     TuiSidebarModule,
     TuiActiveZoneModule,
@@ -75,6 +74,7 @@ import { UploadEffects } from './state/effects/uploadcsv.effects';
     tuiNotificationOptionsProvider({
       autoClose: 1000,
     }),
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
   ],
   bootstrap: [AppComponent],
 })

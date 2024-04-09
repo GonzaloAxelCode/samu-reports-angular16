@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthState } from 'src/app/models/auth.model';
 import {
-  getTokensFromLocalStorage
+  clearTokensLocalstorage,
+  getTokensFromLocalStorage,
 } from 'src/app/services/localstorage/notification.service';
 import {
   checkTokenAction,
@@ -105,9 +106,12 @@ export const authReducer = createReducer(
     },
   })),
   on(clearTokensAction, (state, payload) => {
+    clearTokensLocalstorage();
     return {
       ...state,
       ...payload,
+      accessToken: '',
+      refreshToken: '',
       isAuthenticated: false,
     };
   })

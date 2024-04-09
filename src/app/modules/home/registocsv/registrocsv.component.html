@@ -5,44 +5,56 @@
         class="md:w-[50%] bg-white flex-1 p-4 border-fine rounded-xl mb-4 flex flex-col"
       >
         <div class="flex justify-between">
-          <h2 class="text-gray-500 text-lg font-semibold pb-4">
-            Maestro His Ubigeo Inei Reniec
+          <h2
+            class="text-gray-500 text-lg font-semibold pb-4 flex items-center"
+          >
+            <a [routerLink]="'/home'" class="h-full flex items-center">
+              <mat-icon
+                aria-hidden="false"
+                aria-label="Example home icon"
+                fontIcon="keyboard_return"
+              ></mat-icon>
+            </a>
+
+            <span class="pl-2">
+              {{ detailModelInfo?.title }}
+            </span>
           </h2>
-          <tui-toggle
-            formControlName="testValue1"
-            size="l"
-            class="custom-toggle"
-            [showIcons]="true"
-          ></tui-toggle>
+          <form [formGroup]="testForm">
+            <tui-toggle
+              formControlName="testValue1"
+              size="l"
+              class="custom-toggle"
+              [showIcons]="true"
+            ></tui-toggle>
+          </form>
         </div>
         <div class="flex items-center space-x-12">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/657/657695.png"
-            class="w-[100px]"
+            src="https://cdn-icons-png.freepik.com/512/8686/8686102.png"
+            class="w-[130px]"
           />
-          <ol>
+          <ol class="text-md">
             <li>
               <span class="font-bold">Nombre:</span>
-              <span> Maestro His Ubigeo Inei Reniec</span>
+              <span>{{ id }}</span>
             </li>
             <li>
               <span class="font-bold">Cantidad Registros:</span
-              ><span>122200</span>
+              ><span>{{ detailModelInfo?.count }}</span>
             </li>
+
             <li>
-              <span class="font-bold">Relaciones:</span>
-              <span class="flex flex-wrap">
-                <tui-tag
-                  class="mt-1 mr-1"
-                  status="primary"
-                  size="s"
-                  [value]="tag1"
-                ></tui-tag>
+              <span class="font-bold">Num Columnas:</span
+              ><span>
+                {{ detailModelInfo?.properties?.length || 0 }}
               </span>
             </li>
-            <li><span class="font-bold">Num Columnas:</span><span>9</span></li>
             <li>
-              <span class="font-bold">Estado:</span> <span>Procesado</span>
+              <span class="font-bold">Estado:</span>
+              <span>
+                {{ detailModelInfo?.tiene_datos ? "Procesado" : "Vacio" }}
+              </span>
             </li>
           </ol>
         </div>
@@ -51,27 +63,12 @@
           <button
             tuiButton
             type="button"
-            appearance="primary"
-            class="tui-space_right-3 tui-space_bottom-3 mr-2"
-          >
-            Exportar
-          </button>
-
-          <button
-            tuiButton
-            type="button"
             appearance="secondary-destructive"
             class="tui-space_right-3 tui-space_bottom-3 mr-2"
+            (click)="onClick()"
           >
             Vaciar
           </button>
-          <button
-            tuiButton
-            type="button"
-            appearance="icon"
-            icon="tuiIconAlertCircleLarge"
-            class="tui-space_right-3 tui-space_bottom-3 mr-2"
-          ></button>
         </div>
       </div>
       <div class="md:w-[50%] bg-white flex-1 p-4 border-fine rounded-xl mb-4">
@@ -86,7 +83,7 @@
         Tabla de Registros
       </h2>
       <div *ngIf="hayRegistros" class="m-1">
-        <app-table></app-table>
+        <app-table [columns]="columns"></app-table>
       </div>
       <div *ngIf="!hayRegistros" class="p-4 m-3">
         <tui-block-status>

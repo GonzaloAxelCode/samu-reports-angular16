@@ -8,100 +8,82 @@
   <tui-svg src="tuiIconCheck" class="success tui-space_left-3"></tui-svg>
 </ng-template>
 
-<!-- component -->
-<div
-  class="relative py-4 h-screen"
-  style="
-    background-image: url(https://i0.wp.com/moqueguanoticias.pe/wp-content/uploads/2020/07/WhatsApp-Image-2020-07-13-at-11.20.22-AM.jpeg?fit=1080%2C535&ssl=1);
-    background-size: cover;
-  "
->
-  <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-    <div class="m-auto w-[300px]">
-      <div class="rounded-xl bg-white shadow-xl">
-        <div class="pt-12 pl-8 pr-8 pb-16">
-          <div class="space-y-4">
-            <img
-              src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
-              loading="lazy"
-              class="w-20"
-              alt="tailus logo"
-            />
-            <h2 class="mb-8 text-2xl text-cyan-900 font-bold">
-              Iniciar Session
-            </h2>
+<div class="rounded-xl bg-white">
+  <div class="pt-12 pl-8 pr-8 pb-16">
+    <div class="space-y-4">
+      <img
+        src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
+        loading="lazy"
+        class="w-20"
+        alt="tailus logo"
+      />
+      <h2 class="mb-8 text-2xl text-cyan-900 font-bold">Iniciar Session</h2>
 
-            <form class="b-form" [formGroup]="testForm">
-              <p>
-                <tui-input
-                  tuiTextfieldSize="m"
-                  class="mt-2"
-                  [tuiTextfieldCustomContent]="emailControl.valid && success"
-                  [formControl]="emailControl"
-                >
-                  Type an email
-                  <input tuiTextfield type="email" />
-                </tui-input>
-              </p>
-              <span class="text-error-auth" *ngIf="errorDetail">{{
-                errorDetail
-              }}</span>
-              <tui-input-password
-                formControlName="password"
-                tuiTextfieldSize="m"
-                class="tui-space_top-2 mt-2"
-              >
-                Type a password
-                <input tuiTextfield placeholder="Make it secure!" />
-              </tui-input-password>
-              <div class="w-full">
-                <button
-                  class="w-full mt-3 mb-3"
-                  [showLoader]="isLoadingLogin$ | async"
-                  tuiButton
-                  type="submit"
-                  appearance="outline"
-                  size="m"
-                  (click)="onSubmit()"
-                  [disabled]="!isFormValid()"
-                >
-                  <div class="flex items-center">
-                    <span>Login </span>
-                  </div>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="flex w-full justify-center">or</div>
-          <div class="mt-4 grid space-y-4">
-            <button
-              class="tui-space_right-3 tui-space_bottom-3 w-full"
-              [showLoader]="false"
-              tuiButton
-              type="button"
-              [icon]="icon"
-              appearance="outline"
-              size="m"
-            >
-              Register
-            </button>
-          </div>
-
-          <div class="mt-8 space-y-4 text-gray-600 text-center sm:-mb-8">
-            <p class="text-xs">
-              By proceeding, you agree to our
-              <a href="#" class="underline">Terms of Use</a> and confirm you
-              have read our
-              <a href="#" class="underline">Privacy and Cookie Statement</a>.
-            </p>
-            <p class="text-xs">
-              This site is protected by reCAPTCHA and the
-              <a href="#" class="underline">Google Privacy Policy</a> and
-              <a href="#" class="underline">Terms of Service</a> apply.
-            </p>
-          </div>
+      <form class="b-form" [formGroup]="loginForm">
+        <p>
+          <tui-input
+            tuiTextfieldSize="m"
+            class="mt-2"
+            [tuiTextfieldCustomContent]="emailFormControl.valid && success"
+            [formControl]="emailFormControl"
+          >
+            Type an email
+            <input tuiTextfield type="email" />
+          </tui-input>
+        </p>
+        <p class="text-error-auth" *ngIf="errorDetail">{{ errorDetail }}</p>
+        <tui-input-password
+          formControlName="password"
+          tuiTextfieldSize="m"
+          class="tui-space_top-2 mt-2"
+        >
+          Type a password
+          <input tuiTextfield placeholder="Make it secure!" />
+        </tui-input-password>
+        <div class="w-full">
+          <button
+            class="w-full mt-3 mb-3"
+            [showLoader]="isLoadingLogin$ | async"
+            tuiButton
+            type="submit"
+            appearance="outline"
+            size="m"
+            (click)="onSubmit()"
+            [disabled]="!isFormValid()"
+          >
+            <div class="flex items-center">
+              <span>Login </span>
+            </div>
+          </button>
         </div>
-      </div>
+      </form>
+    </div>
+    <div class="flex w-full justify-center">or</div>
+    <div class="mt-4 grid space-y-4">
+      <button
+        class="tui-space_right-3 tui-space_bottom-3 w-full"
+        [showLoader]="false"
+        tuiButton
+        type="button"
+        [icon]="icon"
+        appearance="outline"
+        size="m"
+      >
+        Register
+      </button>
+    </div>
+
+    <div class="mt-8 space-y-4 text-gray-600 text-center sm:-mb-8">
+      <p class="text-xs">
+        By proceeding, you agree to our
+        <a href="#" class="underline">Terms of Use</a> and confirm you have read
+        our <a href="#" class="underline">Privacy and Cookie Statement</a>.
+      </p>
+      <p class="text-xs">
+        This site is protected by reCAPTCHA and the
+        <a href="#" class="underline">Google Privacy Policy</a> and
+        <a href="#" class="underline">Terms of Service</a> apply.
+      </p>
     </div>
   </div>
 </div>

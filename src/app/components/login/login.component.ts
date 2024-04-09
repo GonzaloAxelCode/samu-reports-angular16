@@ -16,21 +16,21 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
-  errorDetail: string | undefined;
-  readonly emailControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  readonly passwordControl = new FormControl('', Validators.required);
-
-  testForm = new FormGroup({
-    email: this.emailControl,
-    password: this.passwordControl,
-  });
+  constructor(private store: Store<any>) {}
 
   errorsAuth$: Observable<any> = new Observable();
   isLoadingLogin$: Observable<any> = new Observable();
-  constructor(private store: Store<any>) {}
+  errorDetail: string | undefined;
+  readonly passwordFormControl = new FormControl('', Validators.required);
+  readonly emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  loginForm = new FormGroup({
+    email: this.emailFormControl,
+    password: this.passwordFormControl,
+  });
 
   ngOnInit(): void {
     this.isLoadingLogin$ = this.store.select(selectLoadingLogin);
@@ -38,20 +38,19 @@ export class LoginComponent implements OnInit {
 
     this.errorsAuth$.subscribe((data) => {
       if (data) {
-        this.errorDetail = data?.detail || false;
+        this.errorDetail = data?.detail || '';
       }
     });
   }
 
   onSubmit(): void {
-    if (this.testForm.valid) {
-      const formData: any = this.testForm.value;
+    if (this.loginForm.valid) {
+      const formData: any = this.loginForm.value;
       this.store.dispatch(loginInAction(formData));
-      console.log(formData);
     }
   }
 
   isFormValid(): boolean {
-    return this.testForm.valid;
+    return this.loginForm.valid;
   }
 }

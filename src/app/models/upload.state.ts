@@ -4,7 +4,11 @@ export interface UploadState {
   data?: any;
   infoUpload?: any;
   registros?: any;
+  nameModel?: string;
   isLoadingLoadRegistros?: boolean;
+  dataModels?: any;
+  isLoadingLoadDataModels?: boolean;
+  isLoadingEmptyModelRecords?: boolean;
 }
 
 export interface UploadCsvData {

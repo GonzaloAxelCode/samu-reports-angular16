@@ -10,6 +10,12 @@ import {
   TuiTablePaginationModule,
 } from '@taiga-ui/addon-table';
 import {
+  TUI_DIALOGS_CLOSE,
+  TuiDialogModule,
+  TuiRootModule,
+} from '@taiga-ui/core';
+
+import {
   TuiButtonModule,
   TuiDataListModule,
   TuiDropdownModule,
@@ -36,13 +42,24 @@ import { TuiBlockStatusModule } from '@taiga-ui/layout';
 import { FormuploadfileComponent } from 'src/app/components/formuploadfile/formuploadfile.component';
 import { TableComponent } from 'src/app/components/table/table.component';
 import { RegistrocsvComponent } from './registrocsv.component';
-import { RegistrocsvRoutingModule } from './registrocsv.routing';
+import { MatIconModule } from '@angular/material/icon';
+import { TuiPromptModule } from '@taiga-ui/kit';
+
+import { DialogModule } from 'primeng/dialog';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 @NgModule({
   declarations: [RegistrocsvComponent, TableComponent, FormuploadfileComponent],
   imports: [
     CommonModule,
-    RegistrocsvRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: RegistrocsvComponent,
+        canActivate: [AuthGuard],
+      },
+    ]),
     TuiInputModule,
     TuiDropdownModule,
     TuiReorderModule,
@@ -71,6 +88,10 @@ import { RegistrocsvRoutingModule } from './registrocsv.routing';
     TuiBlockStatusModule,
     TuiTagModule,
     TuiToggleModule,
+    MatIconModule,
+    TuiDialogModule,
+    DialogModule,
+    TuiPromptModule,
   ],
 })
 export class RegistocsvModule {}

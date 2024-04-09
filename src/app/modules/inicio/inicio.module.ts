@@ -22,9 +22,20 @@ import { ContactinfoComponent } from './components/contactinfo/contactinfo.compo
 import { ServicesComponent } from './components/services/services.component';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
+import { RegisterComponent } from 'src/app/components/register/register.component';
 
 @NgModule({
-  declarations: [InicioComponent, BannerpresentationComponent, ContactinfoComponent,NavigationComponent, AboutusComponent, ServicesComponent],
+  declarations: [
+    InicioComponent,
+    BannerpresentationComponent,
+    ContactinfoComponent,
+    NavigationComponent,
+    AboutusComponent,
+    ServicesComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -37,7 +48,7 @@ import { InicioComponent } from './inicio.component';
     TuiButtonModule,
     TuiTextfieldControllerModule,
     TuiSvgModule,
-    TuiCarouselModule
+    TuiCarouselModule,
   ],
   providers: [
     tuiNotificationOptionsProvider({
