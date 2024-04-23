@@ -1,3 +1,5 @@
-export const URL_BASE = 'http://localhost:8000';
-export const URL_BASE_FRONT = 'http://localhost:4200';
+import { environment } from 'src/environments/environment.production';
+
+export const URL_BASE = environment.URL_BASE;
+export const URL_BASE_FRONT = environment.URL_BASE_FRONT;
 export const api_version = '1.0';
