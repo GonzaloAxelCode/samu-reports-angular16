@@ -119,19 +119,34 @@
               non_field_errors
             }}</span>
 
-            <div class="w-full">
+            <div class="w-full flex flex-col">
               <button
                 class="w-full mt-3 mb-3"
                 [showLoader]="isLoadingRegister$ | async"
                 tuiButton
                 type="submit"
-                appearance="outline"
+                appearance="opposite"
                 size="m"
                 (click)="onSubmit()"
                 [disabled]="!isFormValid()"
               >
                 <div class="flex items-center">
                   <span> Registrar</span>
+                </div>
+              </button>
+              <div class="flex w-full justify-center">or</div>
+
+              <button
+                class="w-full mt-3 mb-3"
+                tuiButton
+                type="button"
+                appearance="outline"
+                size="m"
+                [icon]="icon"
+                (click)="onClickRedirectLogin()"
+              >
+                <div class="flex items-center">
+                  <span> Ir a iniciar session</span>
                 </div>
               </button>
             </div>

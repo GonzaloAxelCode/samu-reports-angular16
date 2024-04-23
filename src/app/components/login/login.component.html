@@ -40,13 +40,20 @@
           Type a password
           <input tuiTextfield placeholder="Make it secure!" />
         </tui-input-password>
+        <p
+          (click)="onClickRedirectForgotForm()"
+          class="text-xs underline my-2 cursor-pointer text-black"
+        >
+          Olvidaste tu contraseña
+        </p>
+
         <div class="w-full">
           <button
             class="w-full mt-3 mb-3"
             [showLoader]="isLoadingLogin$ | async"
             tuiButton
             type="submit"
-            appearance="outline"
+            appearance="opposite"
             size="m"
             (click)="onSubmit()"
             [disabled]="!isFormValid()"
@@ -68,6 +75,7 @@
         [icon]="icon"
         appearance="outline"
         size="m"
+        (click)="onClickRedirectLogin()"
       >
         Register
       </button>

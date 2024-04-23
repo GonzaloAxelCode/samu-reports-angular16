@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,6 +21,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
+  @Output() eventClickChangeTab = new EventEmitter<number>();
+  onClickRedirectLogin(): void {
+    this.eventClickChangeTab.emit(0);
+  }
   errorEmail: string | undefined;
   errorNickname: string | undefined;
   errorRePassword: string | undefined;

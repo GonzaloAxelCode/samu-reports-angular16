@@ -30,44 +30,17 @@
 </div>
 
 <ng-template #template let-observer>
-  <div class="flex w-full justify-center">
-    <tui-tabs [(activeItemIndex)]="activeItemIndex" tuiMobileTabs>
-      <button tuiTab (click)="onTabClick(1)">
-        <tui-svg src="tuiIconCreditCard" class="tui-space_right-2"></tui-svg>
-        Login
-      </button>
-
-      <button tuiTab (click)="onTabClick(1)">
-        <tui-svg src="tuiIconSettings" class="tui-space_right-2"></tui-svg>
-        Registrarse
-      </button>
-
-      <button tuiTab (click)="onTabClick(2)">
-        <tui-svg src="tuiIconSettings" class="tui-space_right-2"></tui-svg>
-        <div class="flex flex-col">
-          <p>Olvidaste</p>
-          <p>la contraseña</p>
-        </div>
-      </button>
-    </tui-tabs>
-  </div>
   <div class="w-[350px] m-auto">
     <div *ngIf="activeItemIndex === 0">
-      <app-login></app-login>
+      <app-login (eventClickChangeTab)="onTabClick($event)"></app-login>
     </div>
     <div *ngIf="activeItemIndex === 1">
-      <app-register></app-register>
+      <app-register (eventClickChangeTab)="onTabClick($event)"></app-register>
     </div>
     <div *ngIf="activeItemIndex === 2">
-      <app-forgot-password></app-forgot-password>
+      <app-forgot-password
+        (eventClickChangeTab)="onTabClick($event)"
+      ></app-forgot-password>
     </div>
   </div>
 </ng-template>
-
-<!--- 
-
- <div *ngIf="(isAuthenticated$ | async) == false">
-         
-          <app-register></app-register>
-        </div>
--->

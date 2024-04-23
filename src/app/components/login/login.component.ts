@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -18,6 +24,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
+  @Output() eventClickChangeTab = new EventEmitter<number>();
+  onClickRedirectLogin(): void {
+    this.eventClickChangeTab.emit(1);
+  }
+  onClickRedirectForgotForm(): void {
+    this.eventClickChangeTab.emit(2);
+  }
   isAuthSuccess: boolean = false;
   constructor(private store: Store<any>, private router: Router) {}
 
