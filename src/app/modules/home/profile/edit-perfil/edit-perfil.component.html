@@ -1,17 +1,135 @@
-<form class="flex w-full" [formGroup]="editprofileForm">
-  <div class="flex w-full gap-4">
-    <div class="flex flex-col w-[250px]">
-      <label tuiLabel="">Nombre</label>
-      <tui-input formControlName="name">
-        <input tuiTextfield />
-      </tui-input>
-    </div>
-    <div class="flex flex-col w-[250px]">
-      <label tuiLabel="">Apellido</label>
+<h2 class="text-xl font-bold mb-4">Editar perfil</h2>
 
-      <tui-input formControlName="name">
-        <input tuiTextfield />
-      </tui-input>
-    </div>
+<div class="flex gap-4 items-start">
+  <div class="flex flex-col gap-3">
+    <form
+      class="flex w-full"
+      [formGroup]="nicknameForm"
+      (ngSubmit)="onSubmitUpdateNickname()"
+    >
+      <div class="flex gap-4">
+        <div class="flex items-center gap-3">
+          <div class="min-w-[280px] w-[350px]">
+            <tui-input formControlName="nickname">
+              Nickname
+              <input tuiTextfield />
+            </tui-input>
+          </div>
+
+          <button
+            appearance="outline"
+            class="tui-space_right-3"
+            tuiButton
+            type="submit"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </form>
+    <form
+      class="flex w-full"
+      (ngSubmit)="onSubmitUpdateFirstname()"
+      [formGroup]="firstNameForm"
+    >
+      <div class="flex gap-4">
+        <div class="flex items-center gap-3">
+          <div class="min-w-[280px] w-[350px]">
+            <tui-input formControlName="first_name">
+              Nombre
+              <input tuiTextfield />
+            </tui-input>
+          </div>
+
+          <button
+            appearance="outline"
+            tuiButton
+            type="submit"
+            class="tui-space_right-3 tui-space_bottom-3"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <form
+      class="flex w-full"
+      (ngSubmit)="onSubmitUpdateLastname()"
+      [formGroup]="lastNameForm"
+    >
+      <div class="flex gap-4">
+        <div class="flex items-center gap-3">
+          <div class="min-w-[280px] w-[350px]">
+            <tui-input formControlName="last_name">
+              Apellido
+              <input tuiTextfield />
+            </tui-input>
+          </div>
+          <button
+            appearance="outline"
+            tuiButton
+            type="submit"
+            class="tui-space_right-3"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <form
+      class="flex w-full"
+      [formGroup]="phoneNumberForm"
+      (ngSubmit)="onSubmitUpdatePhoneNumber()"
+    >
+      <div class="flex gap-4">
+        <div class="flex items-center gap-3">
+          <div class="min-w-[280px] w-[350px]">
+            <tui-input-phone formControlName="phone_number">
+              Telefono
+              <input tuiTextfield autocomplete="tel" />
+            </tui-input-phone>
+          </div>
+
+          <button
+            appearance="outline"
+            tuiButton
+            type="submit"
+            class="tui-space_right-3"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </form>
+    <form
+      class="flex w-full"
+      [formGroup]="dateBirthDayForm"
+      (ngSubmit)="onSubmitUpdateBirthday()"
+    >
+      <div class="flex gap-4">
+        <div class="flex items-center gap-3">
+          <div class="min-w-[280px] w-[350px]">
+            <tui-input-date
+              tuiUnfinishedValidator="Finish filling the field"
+              formControlName="birthdate"
+              >Choose a date</tui-input-date
+            >
+          </div>
+
+          <button
+            appearance="outline"
+            tuiButton
+            type="submit"
+            class="tui-space_right-3"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+
+  <app-form-photo [user_photo_url]="user?.photo_url || ''"></app-form-photo>
+</div>

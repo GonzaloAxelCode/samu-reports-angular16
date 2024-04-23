@@ -38,8 +38,10 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ROOT_REDUCER } from './state/app.state';
 import { AuthEffects } from './state/effects/auth.effects';
 import { UploadEffects } from './state/effects/uploadcsv.effects';
+import { UserEffects } from './state/effects/user.effects';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 import { LayoutModule } from './modules/layout/layout.module';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,7 +53,7 @@ import { LayoutModule } from './modules/layout/layout.module';
     RouterLinkActive,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
-    EffectsModule.forRoot([AuthEffects, UploadEffects]),
+    EffectsModule.forRoot([AuthEffects, UploadEffects, UserEffects]),
     HttpClientModule,
     TuiRootModule,
     TuiDialogModule,

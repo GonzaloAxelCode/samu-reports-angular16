@@ -15,14 +15,8 @@
         (click)="showDialog(template)"
         class="bg-red-500 text-white font-bold flex items-center space-x-3 py-3 px-5 rounded-3xl justify-between"
       >
-        <span class="text-sm"> Sistema de Llamadas </span>
+        <span class="text-sm"> Ir al sistema</span>
         <i class="text-white fa-solid fa-arrow-right"></i>
-      </button>
-      <button
-        class="bg-[#F7F7F7] border-[1px] border-solid border-black text-black font-bold flex items-center space-x-3 py-2 px-5 rounded-3xl justify-between"
-      >
-        <span class="text-sm"> Sistema de Reportes </span>
-        <i class="fa-solid fa-arrow-right"></i>
       </button>
     </div>
   </div>
@@ -36,8 +30,37 @@
 </div>
 
 <ng-template #template let-observer>
+  <div class="flex w-full justify-center">
+    <tui-tabs [(activeItemIndex)]="activeItemIndex" tuiMobileTabs>
+      <button tuiTab (click)="onTabClick(1)">
+        <tui-svg src="tuiIconCreditCard" class="tui-space_right-2"></tui-svg>
+        Login
+      </button>
+
+      <button tuiTab (click)="onTabClick(1)">
+        <tui-svg src="tuiIconSettings" class="tui-space_right-2"></tui-svg>
+        Registrarse
+      </button>
+
+      <button tuiTab (click)="onTabClick(2)">
+        <tui-svg src="tuiIconSettings" class="tui-space_right-2"></tui-svg>
+        <div class="flex flex-col">
+          <p>Olvidaste</p>
+          <p>la contraseña</p>
+        </div>
+      </button>
+    </tui-tabs>
+  </div>
   <div class="w-[350px] m-auto">
-    <app-login></app-login>
+    <div *ngIf="activeItemIndex === 0">
+      <app-login></app-login>
+    </div>
+    <div *ngIf="activeItemIndex === 1">
+      <app-register></app-register>
+    </div>
+    <div *ngIf="activeItemIndex === 2">
+      <app-forgot-password></app-forgot-password>
+    </div>
   </div>
 </ng-template>
 

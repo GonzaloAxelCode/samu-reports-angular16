@@ -6,6 +6,7 @@ export interface AuthState {
   isAuthenticated?: boolean;
   accessToken?: string;
   refreshToken?: string;
+  isLoadingAuthActivate?: boolean;
 }
 
 export interface AuthLoadings {

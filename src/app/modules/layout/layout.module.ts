@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
-import { LayoutFrontOutletComponent } from './front/outlet/outlet.component';
+import { LayoutFrontOutletComponent } from './outlet/outlet.component';
 
 import { NotificationComponent } from 'src/app/components/notification/notification.component';
 import { TuiLoaderModule } from '@taiga-ui/core';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 @NgModule({
   declarations: [LayoutFrontOutletComponent, NotificationComponent],

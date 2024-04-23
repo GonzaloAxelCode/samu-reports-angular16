@@ -5,10 +5,12 @@ import { HomeComponent } from './home.component';
 
 import { HomeOutletComponent } from './home-outlet/home-outlet.component';
 import { SidebarHomeComponent } from 'src/app/components/sidebar-home/sidebar-home.component';
-import { PasswordComponent } from './profile/password/password.component';
+
 import { RouterLink, RouterModule } from '@angular/router';
-import { ListmodelsComponent } from './listmodels/listmodels.component';
-import { HeadsectionComponent } from './components/headsection/headsection.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TuiButtonModule } from '@taiga-ui/core';
+
 @NgModule({
   declarations: [HomeComponent, HomeOutletComponent, SidebarHomeComponent],
   imports: [
@@ -16,8 +18,16 @@ import { HeadsectionComponent } from './components/headsection/headsection.compo
       {
         path: '',
         component: HomeOutletComponent,
+        canActivate: [AuthGuard],
         children: [
-          { path: '', component: HomeComponent },
+          { path: '', component: DashboardComponent },
+          {
+            path: 'dashboard',
+            loadChildren: () =>
+              import('./dashboard/dashboard.module').then(
+                (m) => m.DashboardModule
+              ),
+          },
           {
             path: 'listmodels',
             loadChildren: () =>
@@ -26,10 +36,10 @@ import { HeadsectionComponent } from './components/headsection/headsection.compo
               ),
           },
           {
-            path: 'registro/:id',
+            path: 'upload/:id',
             loadChildren: () =>
-              import('./registocsv/registocsv.module').then(
-                (m) => m.RegistocsvModule
+              import('./listmodels/upload/upload.module').then(
+                (m) => m.UploadModule
               ),
           },
           {
@@ -37,9 +47,29 @@ import { HeadsectionComponent } from './components/headsection/headsection.compo
             loadChildren: () =>
               import('./profile/profile.module').then((m) => m.ProfileModule),
           },
+          {
+            path: 'reports',
+            loadChildren: () =>
+              import('./reports/reports.module').then((m) => m.ReportsModule),
+          },
+          {
+            path: 'manage-users',
+            loadChildren: () =>
+              import('./manage-users/manage-users.module').then(
+                (m) => m.ManageUsersModule
+              ),
+          },
+          {
+            path: 'settings',
+            loadChildren: () =>
+              import('./settings/settings.module').then(
+                (m) => m.SettingsModule
+              ),
+          },
         ],
       },
     ]),
+    TuiButtonModule,
     CommonModule,
     RouterLink,
   ],

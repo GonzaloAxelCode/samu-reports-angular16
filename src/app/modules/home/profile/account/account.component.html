@@ -1,1 +1,77 @@
-<p>account works!</p>
+<h2 class="text-xl font-bold mb-4">Cuenta</h2>
+
+<div class="flex gap-4 items-start">
+  <div class="flex flex-col gap-3">
+    <form
+      class="flex w-full"
+      (ngSubmit)="onSubmitActivateAccount()"
+      [formGroup]="emailForm"
+    >
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-[300px]">
+          <tui-input formControlName="email">
+            Email
+            <input tuiTextfield />
+          </tui-input>
+        </div>
+
+        <button
+          size="m"
+          class="w-full"
+          tuiButton
+          tuiHint="Some text"
+          tuiHintDirection="top"
+          type="button"
+          (click)="showDialogUpdateEmail()"
+        >
+          Actualizar email
+        </button>
+      </div>
+    </form>
+    <div class="flex gap-4">
+      <div class="flex flex-col w-[300px] items-center gap-3">
+        <button
+          appearance="secondary"
+          class="tui-space_right-3 w-full"
+          tuiButton
+          type="button"
+          (click)="onDesactivateAccount()"
+        >
+          Desactivar esta cuenta
+        </button>
+        <button
+          appearance="secondary-destructive"
+          class="tui-space_right-3 w-full"
+          tuiButton
+          type="button"
+          (click)="onDeleteAccount()"
+        >
+          Eliminar esta cuenta
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{ label: 'Introduce tu contraseña actual', }"
+  [(tuiDialog)]="openModalForPassword"
+>
+  <form [formGroup]="passwordForm" class="w-full flex flex-col gap-3">
+    <p>This abstracts away service and subscription</p>
+
+    <tui-input-password formControlName="current_password" tuiTextfieldSize="s">
+      Type a current password
+      <input placeholder="Make it secure!" tuiTextfield />
+    </tui-input-password>
+    <div>
+      <p class="text-error-auth" *ngIf="errorPassword">{{ errorPassword }}</p>
+      <p class="text-error-auth" *ngIf="errorEmail">{{ errorEmail }}</p>
+    </div>
+
+    <p>
+      <button tuiButton type="button" (click)="onChangeEmail()">Ok</button>
+    </p>
+  </form>
+</ng-template>

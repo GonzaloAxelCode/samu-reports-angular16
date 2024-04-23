@@ -28,3 +28,38 @@ export function clearTokensLocalstorage() {
   localStorage?.removeItem('accessToken');
   localStorage?.removeItem('refreshToken');
 }
+
+export function saveActivationActivePagePageLocalStorage(enabled: boolean) {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.setItem('page_activation_enabled', enabled ? 'true' : 'false');
+  }
+}
+
+export function getIsActivationActivePageLocalStorage() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const isEnabled =
+      localStorage?.getItem('page_activation_enabled') === 'true';
+
+    return isEnabled;
+  }
+  return false;
+}
+//
+export function saveResetPasswordPageLocalStorage(enabled: boolean) {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.setItem(
+      'page_reset_password_enabled',
+      enabled ? 'true' : 'false'
+    );
+  }
+}
+
+export function getIsResetPasswordPageLocalStorage() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const isEnabled =
+      localStorage?.getItem('page_reset_password_enabled') === 'true';
+
+    return isEnabled;
+  }
+  return false;
+}

@@ -10,7 +10,11 @@ import { EditPerfilComponent } from './edit-perfil/edit-perfil.component';
 import { AccountComponent } from './account/account.component';
 import { SecurityComponent } from './security/security.component';
 import { HistoryComponent } from './history/history.component';
-import { TuiInputModule } from '@taiga-ui/kit';
+import {
+  TuiInputModule,
+  TuiSortCountriesPipe,
+  TuiSortCountriesPipeModule,
+} from '@taiga-ui/kit';
 import { TuiInputDateModule } from '@taiga-ui/kit';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiInputFilesModule } from '@taiga-ui/kit';
@@ -18,23 +22,41 @@ import { TuiInputPasswordModule } from '@taiga-ui/kit';
 import { TuiInputPhoneModule } from '@taiga-ui/kit';
 import { TuiInputPhoneInternationalModule } from '@taiga-ui/kit';
 import { TuiTextAreaModule } from '@taiga-ui/kit';
-import { TuiLabelModule } from '@taiga-ui/core';
+import {
+  TuiButtonModule,
+  TuiDialogModule,
+  TuiLabelModule,
+  TuiScrollbarModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
 import { TuiGroupModule } from '@taiga-ui/core';
+import { SharedModule } from '../../shared/shared.module';
+import { TuiMobileCalendarDialogModule } from '@taiga-ui/addon-mobile';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
+import {
+  TuiReorderModule,
+  TuiTableFiltersModule,
+  TuiTableModule,
+  TuiTablePaginationModule,
+} from '@taiga-ui/addon-table';
+import { FormPhotoComponent } from './edit-perfil/components/form-photo/form-photo.component';
 @NgModule({
   declarations: [
     PasswordComponent,
     ProfileComponent,
     ProfileOutletComponent,
-    HeadsectionComponent,
     InformacionComponent,
     EditPerfilComponent,
     AccountComponent,
     SecurityComponent,
     HistoryComponent,
+    FormPhotoComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
+    TuiMobileCalendarDialogModule,
     RouterModule.forChild([
       {
         path: '',
@@ -42,7 +64,7 @@ import { TuiGroupModule } from '@taiga-ui/core';
         children: [
           {
             path: 'informacion',
-            component: ProfileComponent,
+            component: InformacionComponent,
           },
           {
             path: 'password',
@@ -71,14 +93,25 @@ import { TuiGroupModule } from '@taiga-ui/core';
     ]),
     ReactiveFormsModule,
     TuiInputModule,
+    TuiTextfieldControllerModule,
     TuiInputDateModule,
     TuiInputFilesModule,
     TuiInputPasswordModule,
     TuiInputPhoneModule,
-    TuiInputPhoneInternationalModule,
     TuiTextAreaModule,
     TuiLabelModule,
+    TuiButtonModule,
     TuiGroupModule,
+    TuiScrollbarModule,
+    ScrollingModule,
+    TuiReorderModule,
+    TuiTableFiltersModule,
+    TuiTableModule,
+    TuiTablePaginationModule,
+    ReactiveFormsModule,
+    TuiSortCountriesPipeModule,
+    TuiInputPhoneInternationalModule,
+    TuiDialogModule,
   ],
 })
 export class ProfileModule {}

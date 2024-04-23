@@ -1,0 +1,41 @@
+<form class="flex w-full">
+  <div class="flex gap-4 flex-col items-center">
+    <img
+      *ngIf="!imageUrl"
+      width="100px"
+      height="100px"
+      [src]="user_photo_url"
+      alt="Photo current user"
+    />
+    <div class="flex flex-col items-center gap-3">
+      <div *ngIf="!imageUrl" class="min-w-[280px] w-[350px]">
+        <tui-input-files [formControl]="control"></tui-input-files>
+      </div>
+
+      <div class="flex flex-col gap-3 items-center" *ngIf="imageUrl">
+        <img width="100px" height="100px" [src]="imageUrl" alt="Preview" />
+        <button
+          tuiButton
+          type="button"
+          appearance="secondary-destructive"
+          class="tui-space_right-3"
+          (click)="removeFile()"
+        >
+          Vaciar
+        </button>
+      </div>
+
+      <div class="flex gap-3">
+        <button
+          appearance="outline"
+          tuiButton
+          type="button"
+          (click)="onSubmitFile()"
+          [disabled]="!control.value"
+        >
+          Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

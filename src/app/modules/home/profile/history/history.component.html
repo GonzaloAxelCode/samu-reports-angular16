@@ -1,1 +1,36 @@
-<p>history works!</p>
+<h2 class="text-xl font-bold mb-4">Historial de actividades</h2>
+<div class="w-full">
+  <tui-scrollbar>
+    <cdk-virtual-scroll-viewport
+      #viewport
+      tuiScrollable
+      class="viewport tui-zero-scrollbar"
+      [itemSize]="45"
+      [maxBufferPx]="500"
+      [minBufferPx]="400"
+    >
+      <div class="w-full">
+        <table class="table">
+          <thead>
+            <tr>
+              <th
+                [sticky]="true"
+                tuiTh
+                [style.top.px]="-viewport['_renderedContentOffset']"
+                *ngFor="let column of columns"
+              >
+                {{ column.title }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--<tr *ngFor="let registro of selectRegistros$ | async">
+              <td *ngFor="let column of columns">{{ registro[column.id] }}</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </tui-scrollbar>
+</div>

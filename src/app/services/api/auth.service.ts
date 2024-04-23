@@ -126,4 +126,126 @@ export class AuthService {
         })
       );
   }
+
+  fetchAuthActivationAccount(
+    uid: string,
+    token: string
+  ): Observable<ResponseServiceState> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<PostResponse>(
+        `${this.siteURL}/auth/users/activation/`,
+        {
+          uid,
+          token,
+        },
+        {
+          headers,
+          observe: 'response',
+        }
+      )
+
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          if (response.status === 200 || response.status === 204) {
+            return {
+              errors: {},
+              data: response.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
+
+  fetchResetPassword(email: string): Observable<ResponseServiceState> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<any>(
+        `${this.siteURL}/auth/users/reset_password/`,
+        { email: email },
+        {
+          headers,
+          observe: 'response',
+        }
+      )
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          console.log(response);
+          if (response.status === 200 || response.status === 204) {
+            return {
+              errors: {},
+              data: response.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
+
+  fetchConfirmationResetPassword(
+    uid: string,
+    token: string,
+    new_password: string,
+    re_new_password: string
+  ): Observable<ResponseServiceState> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<any>(
+        `${this.siteURL}/auth/users/reset_password_confirm/`,
+        { uid, token, new_password, re_new_password },
+        {
+          headers,
+          observe: 'response',
+        }
+      )
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        }),
+        map((response: HttpResponse<any>) => {
+          console.log(response);
+          if (response.status === 200 || response.status == 204) {
+            return {
+              errors: {},
+              data: response.body,
+              isSuccess: true,
+            };
+          } else {
+            return {
+              errors: response.body,
+              data: {},
+              isSuccess: false,
+            };
+          }
+        })
+      );
+  }
 }

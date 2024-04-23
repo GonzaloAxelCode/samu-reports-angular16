@@ -9,6 +9,7 @@ import {
 } from 'src/app/state/selectors/upload.selectors';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { loadInfoUserAction } from 'src/app/state/actions/user.actions';
 
 @Component({
   selector: 'app-home',

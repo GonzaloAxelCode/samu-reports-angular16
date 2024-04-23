@@ -24,8 +24,8 @@ import { selectAllModels } from 'src/app/state/selectors/upload.selectors';
 import { TUI_PROMPT, TuiPromptData } from '@taiga-ui/kit';
 @Component({
   selector: 'app-registrocsv',
-  templateUrl: './registrocsv.component.html',
-  styleUrls: ['./registrocsv.component.scss'],
+  templateUrl: './upload.component.html',
+  styleUrls: ['./upload.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     tuiButtonOptionsProvider({
@@ -35,7 +35,7 @@ import { TUI_PROMPT, TuiPromptData } from '@taiga-ui/kit';
     }),
   ],
 })
-export class RegistrocsvComponent implements OnInit {
+export class UploadComponent implements OnInit {
   id: string = '';
 
   constructor(

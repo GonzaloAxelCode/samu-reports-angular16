@@ -41,7 +41,7 @@ import {
 import { TuiBlockStatusModule } from '@taiga-ui/layout';
 import { FormuploadfileComponent } from 'src/app/components/formuploadfile/formuploadfile.component';
 import { TableComponent } from 'src/app/components/table/table.component';
-import { RegistrocsvComponent } from './registrocsv.component';
+import { UploadComponent } from './upload.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TuiPromptModule } from '@taiga-ui/kit';
 
@@ -50,13 +50,13 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 
 @NgModule({
-  declarations: [RegistrocsvComponent, TableComponent, FormuploadfileComponent],
+  declarations: [UploadComponent, TableComponent, FormuploadfileComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: RegistrocsvComponent,
+        component: UploadComponent,
         canActivate: [AuthGuard],
       },
     ]),
@@ -94,4 +94,4 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
     TuiPromptModule,
   ],
 })
-export class RegistocsvModule {}
+export class UploadModule {}

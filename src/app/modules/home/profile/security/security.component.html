@@ -1,1 +1,26 @@
-<p>security works!</p>
+<h2 class="text-xl font-bold mb-4">Seguridad</h2>
+
+<h2 class="text-lg font-bold">Crear Pin</h2>
+
+<form [formGroup]="pinForm" class="flex mt-5 flex-col gap-3">
+  <tui-input-password formControlName="pin" tuiTextfieldSize="m">
+    Ingresa el pin de cuatro dijitos
+    <input placeholder="Ingresa tu PIN" tuiTextfield />
+  </tui-input-password>
+
+  <tui-input-password formControlName="repin" tuiTextfieldSize="m">
+    Dijitalo otra vez
+    <input placeholder="Reingresa tu pin" tuiTextfield />
+  </tui-input-password>
+  <button
+    size="m"
+    class="w-full"
+    appearance="opposite"
+    tuiButton
+    tuiHint="Some text"
+    tuiHintDirection="top"
+    type="submit"
+  >
+    Crear Pin
+  </button>
+</form>

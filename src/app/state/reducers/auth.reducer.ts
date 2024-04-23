@@ -5,6 +5,9 @@ import {
   getTokensFromLocalStorage,
 } from 'src/app/services/localstorage/notification.service';
 import {
+  authActivateEmailAction,
+  authActivateEmailFail,
+  authActivateEmailSuccess,
   checkTokenAction,
   checkTokenActionFail,
   checkTokenActionSuccess,
@@ -15,6 +18,12 @@ import {
   registerInAction,
   registerInActionFail,
   registerInActionSuccess,
+  resetConfirmationPasswordAction,
+  resetConfirmationPasswordFail,
+  resetConfirmationPasswordSuccess,
+  resetPasswordAction,
+  resetPasswordFail,
+  resetPasswordSuccess,
 } from '../actions/auth.actions';
 const { refreshToken, accessToken } = getTokensFromLocalStorage();
 
@@ -23,6 +32,7 @@ export const initialState: AuthState = {
   isAuthenticated: false,
   accessToken: accessToken || '',
   refreshToken: refreshToken || '',
+  isLoadingAuthActivate: false,
   loadings: {
     isLoadingLogin: false,
     isLoadingVerifyToken: false,
@@ -79,6 +89,9 @@ export const authReducer = createReducer(
       isLoadingRegister: false,
     },
   })),
+
+  //check token
+
   on(checkTokenAction, (state, payload) => ({
     ...state,
     ...payload,
@@ -114,5 +127,55 @@ export const authReducer = createReducer(
       refreshToken: '',
       isAuthenticated: false,
     };
-  })
+  }),
+  on(authActivateEmailAction, (state) => ({
+    ...state,
+
+    isLoadingAuthActivate: true,
+  })),
+  on(authActivateEmailSuccess, (state, payload) => ({
+    ...state,
+    ...payload,
+
+    isLoadingAuthActivate: false,
+  })),
+  on(authActivateEmailFail, (state, payload) => ({
+    ...state,
+    ...payload,
+
+    isLoadingAuthActivate: false,
+  })),
+  ///
+  on(resetPasswordAction, (state) => ({
+    ...state,
+    isLoadingResetPassword: true,
+  })),
+  on(resetPasswordSuccess, (state, payload) => ({
+    ...state,
+    ...payload,
+    isLoadingResetPassword: false,
+  })),
+  on(resetPasswordFail, (state, payload) => ({
+    ...state,
+    ...payload,
+
+    isLoadingResetPassword: false,
+  })),
+
+  //
+  on(resetConfirmationPasswordAction, (state) => ({
+    ...state,
+    isLoadingConfirmationChangePassword: true,
+  })),
+  on(resetConfirmationPasswordSuccess, (state, payload) => ({
+    ...state,
+    ...payload,
+    isLoadingConfirmationChangePassword: false,
+  })),
+  on(resetConfirmationPasswordFail, (state, payload) => ({
+    ...state,
+    ...payload,
+
+    isLoadingConfirmationChangePassword: false,
+  }))
 );

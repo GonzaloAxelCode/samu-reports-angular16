@@ -34,7 +34,7 @@ export class NotificationComponent implements OnInit {
           .open(state.message, {
             label: state.label,
             status: state.status,
-            autoClose: false,
+            autoClose: 2000,
           })
           .subscribe();
         setTimeout(() => {

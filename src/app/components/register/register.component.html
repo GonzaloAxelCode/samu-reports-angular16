@@ -10,160 +10,146 @@
 </ng-template>
 
 <!-- component -->
-<div class="relative py-16">
-  <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-    <div class="m-auto w-[330px]">
-      <div class="rounded-xl bg-white shadow-xl">
-        <div class="p-6 sm:p-16">
-          <form [formGroup]="testForm">
-            <div class="space-y-4">
-              <img
-                src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
-                loading="lazy"
-                class="w-20"
-                alt="tailus logo"
-              />
-              <h2 class="mb-8 text-2xl text-cyan-900 font-bold">
-                Registrar Cuenta
-              </h2>
+<div class="rounded-xl bg-white">
+  <div class="pt-12 pl-8 pr-8 pb-16">
+    <div class="space-y-4">
+      <form [formGroup]="testForm">
+        <div class="space-y-4">
+          <img
+            src="https://res.cloudinary.com/ddksrkond/image/upload/v1687316127/samu/download-removebg-preview_iidvap.png"
+            loading="lazy"
+            class="w-20"
+            alt="tailus logo"
+          />
+          <h2 class="mb-8 text-2xl text-cyan-900 font-bold">
+            Registrar Cuenta
+          </h2>
 
-              <form class="b-form" [formGroup]="testForm">
-                <p>
-                  <tui-input
-                    [tuiTextfieldCustomContent]="emailControl.valid && success"
-                    [formControl]="emailControl"
-                    tuiTextfield
-                    class="tui-space_top-2 mt-2"
-                    tuiTextfieldSize="m"
-                  >
-                    Type an email
-                    <input tuiTextfield type="email" />
-                  </tui-input>
-                  <span class="text-error-auth" *ngIf="errorEmail">{{
-                    errorEmail
-                  }}</span>
-                </p>
-                <p>
-                  <tui-input
-                    tuiTextfield
-                    class="tui-space_top-2 mt-2"
-                    tuiTextfieldSize="m"
-                    [tuiTextfieldCustomContent]="
-                      firstnameControl.valid && success
-                    "
-                    [formControl]="firstnameControl"
-                  >
-                    Type an firstname
-                    <input tuiTextfield type="text" />
-                  </tui-input>
-                </p>
-                <p>
-                  <tui-input
-                    class="tui-space_top-2 mt-2"
-                    tuiTextfieldSize="m"
-                    tuiTextfield
-                    [tuiTextfieldCustomContent]="
-                      lastnameControl.valid && success
-                    "
-                    [formControl]="lastnameControl"
-                  >
-                    Type an lastname
-                    <input tuiTextfield type="text" />
-                  </tui-input>
-                </p>
-                <p>
-                  <tui-input
-                    class="tui-space_top-2 mt-2"
-                    tuiTextfieldSize="m"
-                    tuiTextfield
-                    [tuiTextfieldCustomContent]="
-                      nicknameControl.valid && success
-                    "
-                    [formControl]="nicknameControl"
-                  >
-                    Type an username
-                    <input tuiTextfield type="text" />
-                  </tui-input>
-                  <span class="text-error-auth" *ngIf="errorNickname">{{
-                    errorNickname
-                  }}</span>
-                </p>
-                <p>
-                  <tui-input-password
-                    [tuiTextfieldCustomContent]="
-                      passwordControl.valid && success
-                    "
-                    [formControl]="passwordControl"
-                    tuiTextfieldSize="m"
-                    class="tui-space_top-2 mt-2"
-                  >
-                    Type a password
-                    <input tuiTextfield placeholder="****" />
-                  </tui-input-password>
-                </p>
+          <form class="b-form" [formGroup]="testForm">
+            <p>
+              <tui-input
+                [tuiTextfieldCustomContent]="emailControl.valid && success"
+                [formControl]="emailControl"
+                tuiTextfield
+                class="tui-space_top-2 mt-2"
+                tuiTextfieldSize="m"
+              >
+                Type an email
+                <input tuiTextfield type="email" />
+              </tui-input>
+              <span class="text-error-auth" *ngIf="errorEmail">{{
+                errorEmail
+              }}</span>
+            </p>
+            <p>
+              <tui-input
+                tuiTextfield
+                class="tui-space_top-2 mt-2"
+                tuiTextfieldSize="m"
+                [tuiTextfieldCustomContent]="firstnameControl.valid && success"
+                [formControl]="firstnameControl"
+              >
+                Type an firstname
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </p>
+            <p>
+              <tui-input
+                class="tui-space_top-2 mt-2"
+                tuiTextfieldSize="m"
+                tuiTextfield
+                [tuiTextfieldCustomContent]="lastnameControl.valid && success"
+                [formControl]="lastnameControl"
+              >
+                Type an lastname
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </p>
+            <p>
+              <tui-input
+                class="tui-space_top-2 mt-2"
+                tuiTextfieldSize="m"
+                tuiTextfield
+                [tuiTextfieldCustomContent]="nicknameControl.valid && success"
+                [formControl]="nicknameControl"
+              >
+                Type an username
+                <input tuiTextfield type="text" />
+              </tui-input>
+              <span class="text-error-auth" *ngIf="errorNickname">{{
+                errorNickname
+              }}</span>
+            </p>
+            <p>
+              <tui-input-password
+                [tuiTextfieldCustomContent]="passwordControl.valid && success"
+                [formControl]="passwordControl"
+                tuiTextfieldSize="m"
+                class="tui-space_top-2 mt-2"
+              >
+                Type a password
+                <input tuiTextfield placeholder="****" />
+              </tui-input-password>
+            </p>
 
-                <span class="text-error-auth" *ngIf="errorPassword1"
-                  >{{ errorPassword1 }} <br
-                /></span>
-                <span class="text-error-auth" *ngIf="errorPassword2"
-                  >{{ errorPassword2 }} <br
-                /></span>
-                <span class="text-error-auth" *ngIf="errorPassword3"
-                  >{{ errorPassword3 }} <br
-                /></span>
-                <p>
-                  <tui-input-password
-                    [tuiTextfieldCustomContent]="
-                      rePasswordControl.valid && success
-                    "
-                    [formControl]="rePasswordControl"
-                    tuiTextfieldSize="m"
-                    class="tui-space_top-2 mt-2"
-                  >
-                    Type a re-password
-                    <input tuiTextfield placeholder="****" />
-                  </tui-input-password>
-                </p>
-                <span class="text-error-auth" *ngIf="errorRePassword">{{
-                  errorRePassword
-                }}</span>
-                <span class="text-error-auth" *ngIf="non_field_errors">{{
-                  non_field_errors
-                }}</span>
+            <span class="text-error-auth" *ngIf="errorPassword1"
+              >{{ errorPassword1 }} <br
+            /></span>
+            <span class="text-error-auth" *ngIf="errorPassword2"
+              >{{ errorPassword2 }} <br
+            /></span>
+            <span class="text-error-auth" *ngIf="errorPassword3"
+              >{{ errorPassword3 }} <br
+            /></span>
+            <p>
+              <tui-input-password
+                [tuiTextfieldCustomContent]="rePasswordControl.valid && success"
+                [formControl]="rePasswordControl"
+                tuiTextfieldSize="m"
+                class="tui-space_top-2 mt-2"
+              >
+                Type a re-password
+                <input tuiTextfield placeholder="****" />
+              </tui-input-password>
+            </p>
+            <span class="text-error-auth" *ngIf="errorRePassword">{{
+              errorRePassword
+            }}</span>
+            <span class="text-error-auth" *ngIf="non_field_errors">{{
+              non_field_errors
+            }}</span>
 
-                <div class="w-full">
-                  <button
-                    class="w-full mt-3 mb-3"
-                    [showLoader]="isLoadingRegister$ | async"
-                    tuiButton
-                    type="submit"
-                    appearance="outline"
-                    size="m"
-                    (click)="onSubmit()"
-                    [disabled]="!isFormValid()"
-                  >
-                    <div class="flex items-center">
-                      <span> Registrar</span>
-                    </div>
-                  </button>
+            <div class="w-full">
+              <button
+                class="w-full mt-3 mb-3"
+                [showLoader]="isLoadingRegister$ | async"
+                tuiButton
+                type="submit"
+                appearance="outline"
+                size="m"
+                (click)="onSubmit()"
+                [disabled]="!isFormValid()"
+              >
+                <div class="flex items-center">
+                  <span> Registrar</span>
                 </div>
-              </form>
+              </button>
             </div>
           </form>
-          <div class="mt-8 space-y-4 text-gray-600 text-center sm:-mb-8">
-            <p class="text-xs">
-              By proceeding, you agree to our
-              <a href="#" class="underline">Terms of Use</a> and confirm you
-              have read our
-              <a href="#" class="underline">Privacy and Cookie Statement</a>.
-            </p>
-            <p class="text-xs">
-              This site is protected by reCAPTCHA and the
-              <a href="#" class="underline">Google Privacy Policy</a> and
-              <a href="#" class="underline">Terms of Service</a> apply.
-            </p>
-          </div>
         </div>
+      </form>
+      <div class="mt-8 space-y-4 text-gray-600 text-center sm:-mb-8">
+        <p class="text-xs">
+          By proceeding, you agree to our
+          <a href="#" class="underline">Terms of Use</a> and confirm you have
+          read our
+          <a href="#" class="underline">Privacy and Cookie Statement</a>.
+        </p>
+        <p class="text-xs">
+          This site is protected by reCAPTCHA and the
+          <a href="#" class="underline">Google Privacy Policy</a> and
+          <a href="#" class="underline">Terms of Service</a> apply.
+        </p>
       </div>
     </div>
   </div>

@@ -50,3 +50,46 @@ export const checkTokenActionSuccess = createAction(
 );
 
 export const clearTokensAction = createAction(ActionTypes.CLEAR_TOKENS_ACTION);
+
+export const authActivateEmailAction = createAction(
+  'AUTH_ACTIVATE_EMAIL_ACTION',
+  props<{ uid: string; token: string }>()
+);
+export const authActivateEmailSuccess = createAction(
+  'AUTH_ACTIVATE_EMAIL_SUCCESS'
+);
+export const authActivateEmailFail = createAction('AUTH_ACTIVATE_EMAIL_FAIL');
+
+//
+export const resetPasswordAction = createAction(
+  'RESET_PASSWORD_ACTION',
+  props<{
+    email: string;
+  }>()
+);
+export const resetPasswordSuccess = createAction(
+  'RESET_PASSWORD_SUCCESS',
+  props<AuthState>()
+);
+export const resetPasswordFail = createAction(
+  'RESET_PASSWORD_FAIL',
+  props<AuthState>()
+);
+//
+export const resetConfirmationPasswordAction = createAction(
+  'RESET_CONFIRMATION_PASSWORD_ACTION',
+  props<{
+    uid: string;
+    token: string;
+    new_password: string;
+    re_new_password: string;
+  }>()
+);
+export const resetConfirmationPasswordSuccess = createAction(
+  'RESET_CONFIRMATION_PASSWORD_SUCCESS',
+  props<AuthState>()
+);
+export const resetConfirmationPasswordFail = createAction(
+  'RESET_CONFIRMATION_PASSWORD_FAIL',
+  props<AuthState>()
+);

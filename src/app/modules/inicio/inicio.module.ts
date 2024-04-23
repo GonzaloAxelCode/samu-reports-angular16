@@ -24,6 +24,14 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
+import { TuiTabsModule } from '@taiga-ui/kit';
+import { ActivateaccountComponent } from './components/activateaccount/activateaccount.component';
+import { RouterModule } from '@angular/router';
+
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { PageActivationGuard } from 'src/app/guards/pageactivation.guard';
+import { PageResetPasswordGuard } from 'src/app/guards/pagearesetpassword.guard';
+import { ForgotPasswordComponent } from 'src/app/components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +43,27 @@ import { RegisterComponent } from 'src/app/components/register/register.componen
     ServicesComponent,
     LoginComponent,
     RegisterComponent,
+    ActivateaccountComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
+    RouterModule.forChild([
+      {
+        path: '',
+        component: InicioComponent,
+      },
+      {
+        path: 'activate/:uid/:token',
+        component: ActivateaccountComponent,
+        canActivate: [PageActivationGuard],
+      },
+      {
+        path: 'password/reset/confirm/:uid/:token',
+        component: ResetPasswordComponent,
+        canActivate: [PageResetPasswordGuard],
+      },
+    ]),
     CommonModule,
     ReactiveFormsModule,
     InicioRoutingModule,
@@ -49,6 +76,7 @@ import { RegisterComponent } from 'src/app/components/register/register.componen
     TuiTextfieldControllerModule,
     TuiSvgModule,
     TuiCarouselModule,
+    TuiTabsModule,
   ],
   providers: [
     tuiNotificationOptionsProvider({

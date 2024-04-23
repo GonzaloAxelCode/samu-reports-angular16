@@ -1,29 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
 import { AppState } from '../state/app.state';
+import { Observable } from 'rxjs';
+import {
+  selectAuthenticated,
+  selectCheckAuthenticateLoading,
+} from '../state/selectors/auth.selectors';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(private store: Store<AppState>, private router: Router) {}
+  isAuthenticated$: Observable<any>;
 
-  canActivate(): Observable<boolean> {
-    return this.store.pipe(
-      select((state) => state.Auth.isAuthenticated),
-      map((isAuthenticated: boolean | undefined) => {
-        if (isAuthenticated === undefined) {
-          return false;
-        }
-        if (!isAuthenticated) {
-          this.router.navigate(['/']);
-        }
-        return isAuthenticated;
-      }),
-      take(1)
-    );
+  constructor(private store: Store<AppState>, private router: Router) {
+    this.isAuthenticated$ = this.store.select(selectAuthenticated);
+  }
+
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+    return this.isAuthenticated$;
   }
 }

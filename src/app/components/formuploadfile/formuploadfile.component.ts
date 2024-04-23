@@ -57,6 +57,7 @@ export class FormuploadfileComponent {
         this.currentNameModel = nameModel;
       }
     });
+
     this.selectInfoUpload$.subscribe((data) => {
       if (data) {
         this.infoUpload = data;

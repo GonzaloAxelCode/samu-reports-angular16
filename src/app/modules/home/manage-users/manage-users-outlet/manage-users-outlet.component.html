@@ -1,0 +1,15 @@
+<main class="main">
+  <div class="responsive-wrapper">
+    <app-headsection
+      [navigationitems]="routes"
+      [title]="titlehead"
+      [subtitlehead]="subtitlehead"
+      [descriptionhead]="descriptionhead"
+    ></app-headsection>
+    <div class="content">
+      <div class="content-main">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</main>
